@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>
 
@@ -13,8 +14,8 @@
 </head>
 <body>
     <nav>
-      <div class="nav-wrapper">
-        <a href="" class="brand-logo">Sección Socios</a>
+      <div class="nav-wrapper light-blue darken-2">
+        <a class="brand-logo titulo">Sección Socios</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li><a href="">sass</a></li>
           <li><a href="">sass <span class="new badge">4</span></a></li>
@@ -23,11 +24,11 @@
      </div>
     </nav>
     <div class="row">
-      <form class="col s12" id="crearSocio">
+      <form class="col s8 offset-s2" id="crearSocio">
         <h1>Agregar Socio</h1>
 
         <div>
-          <div class="input-field col s6">
+          <div class="input-field col s6 ">
             <label>Nombre</label>
             <input type="text" class="validate" length="15" id="nombre_socio"/>
           </div>
@@ -68,14 +69,33 @@
         </div>
 
         <div id="row">
+          <div class="input-field col s6">
+            <br/>
+            <p id="sexo">
+              <input name="sexo_socio" type="radio" id="femenino" style="" />
+              <label for="femenino">Femenino</label>
+              
+              <input name="sexo_socio" type="radio" id="masculino" />
+              <label for="masculino">Masculino</label>
+            </p>
+            <label for="sexo">Sexo</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="email" type="email" class="validate">
+            <label for="email_socio">Email</label>
+          </div>
+        </div>
+        <div id="row">
           <div class="input-field col s9">
             <label>Tarjeta profesional</label>
             <input type="text" class="validate" id="tarjeta_socio"/>
           </div>
           <div class="input-field col s3">
-            <a class="waves-effect waves-light btn">Consultar
-            <i class="material-icons">list</i>
-            </a>
+            <div class="container">
+              <a class="waves-effect waves-light btn light-blue lighten-1">Consultar
+                <i class="material-icons">list</i>
+              </a>
+            </div>
           </div>
         </div>      
 
@@ -87,13 +107,6 @@
           <div class="input-field col s6">
             <label>Dirección de domicilio</label>
             <input type="text" class="validate" id="domicilio_socio"/>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="email" type="email" class="validate">
-            <label for="email_socio">Email</label>
           </div>
         </div>
 
@@ -125,9 +138,18 @@
           </div>
         </div>
 
-        <div class="input-field col s12">
-          <div class="input-field col s6">
-            <a class="waves-effect waves-light btn-large"><i class="material-icons right">submit</i>Guardar</a>
+        <div class="row">
+          <div class="input-field col s12">
+            <label for="fechaingreso">Causal de Retiro</label>
+            <textarea id="causal_socio" class="materialize-textarea"></textarea>
+          </div>
+        </div>
+
+        <div class="input-field col s12 offset-s4">
+          <div class="container">
+            <a class="waves-effect waves-light btn-large light-blue lighten-1">
+            <i class="material-icons right">send</i>
+            Guardar</a>
           </div>
         </div>
       </form>
