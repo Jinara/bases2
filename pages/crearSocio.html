@@ -17,9 +17,9 @@
       <div class="nav-wrapper light-blue darken-2">
         <a class="brand-logo titulo">Sección Socios</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="">sass</a></li>
-          <li><a href="">sass <span class="new badge">4</span></a></li>
-          <li><a href="">sass</a></li>
+          <li><a href="">Aportes</a></li>
+          <li><a href="">Créditos</a></li>
+          <li><a href="">Parametrización</a></li>
         </ul>
      </div>
     </nav>
@@ -70,15 +70,11 @@
 
         <div id="row">
           <div class="input-field col s6">
-            <br/>
-            <p id="sexo">
-              <input name="sexo_socio" type="radio" id="femenino" style="" />
-              <label for="femenino">Femenino</label>
-              
-              <input name="sexo_socio" type="radio" id="masculino" />
-              <label for="masculino">Masculino</label>
-            </p>
-            <label for="sexo">Sexo</label>
+            <select id="sexo_socio">
+              <option value="" disabled selected>Sexo</option>
+              <option value="1">Femenino</option>
+              <option value="2">Masculino</option>
+            </select>
           </div>
           <div class="input-field col s6">
             <input id="email" type="email" class="validate">
@@ -145,13 +141,11 @@
           </div>
         </div>
 
-        <div class="input-field col s12 offset-s4">
-          <div class="container">
+        <div class="input-field col s4 offset-s4">
             <a class="waves-effect waves-light btn-large light-blue lighten-1">
             <i class="material-icons right">send</i>
             Guardar</a>
           </div>
-        </div>
       </form>
     </div>
   <script type="text/javascript" src="../js/lib/jquery-2.1.1.min.js"></script>
