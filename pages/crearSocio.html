@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Crear Socio</title>
+  <meta charset="utf-8">
+  <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+    <nav>
+      <div class="nav-wrapper light-blue darken-2">
+        <a class="brand-logo titulo">Sección Socios</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="">Aportes</a></li>
+          <li><a href="">Créditos</a></li>
+          <li><a href="">Parametrización</a></li>
+        </ul>
+     </div>
+    </nav>
+    <div class="row">
+      <form class="col s8 offset-s2" id="crearSocio">
+        <h1>Agregar Socio</h1>
+
+        <div>
+          <div class="input-field col s6 ">
+            <label>Nombre</label>
+            <input type="text" class="validate" length="15" id="nombre_socio"/>
+          </div>
+          <div class="input-field col s6">
+            <label>Apellido</label>
+            <input type="text" class="validate" length="15" id="apellido_socio"/>
+          </div>
+        </div>
+
+        <div id="row">
+          <div class="input-field col s6">
+            <select id="tipo_socio">
+              <option value="" disabled selected>Tipo de socio</option>
+              <option value="1">Administrador</option>
+              <option value="2">Socio</option>
+            </select>
+          </div>
+          <div class="input-field col s6">
+            <select id="estadocivil_socio">
+              <option value="" disabled selected>Estado civil</option>
+              <option value="1">Soltero</option>
+              <option value="2">Viudo</option>
+              <option value="3">Casado</option>
+              <option value="4">Unión Libre</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="row">
+          <div class="input-field col s6">
+            <label>Ocupación</label>
+            <input type="text" class="validate" id="ocupacion_socio"/>
+          </div>
+          <div class="input-field col s6">
+            <label>Numero de Documento de Identidad</label>
+            <input type="text" class="validate" id="documento_socio"/>
+          </div>
+        </div>
+
+        <div id="row">
+          <div class="input-field col s6">
+            <select id="sexo_socio">
+              <option value="" disabled selected>Sexo</option>
+              <option value="1">Femenino</option>
+              <option value="2">Masculino</option>
+            </select>
+          </div>
+          <div class="input-field col s6">
+            <input id="email" type="email" class="validate">
+            <label for="email_socio">Email</label>
+          </div>
+        </div>
+
+        <div id="row">
+          <div class="input-field col s6">
+            <label>Dirección de trabajo</label>
+            <input type="text" class="validate" id="trabajo_socio"/>
+          </div>
+          <div class="input-field col s6">
+            <label>Dirección de domicilio</label>
+            <input type="text" class="validate" id="domicilio_socio"/>
+          </div>
+        </div>
+
+        <div id="row">
+          <div class="input-field col s4">
+            <label>Telefono del domicilio</label>
+            <input type="text" class="validate" id="trabajo_socio"/>
+          </div>
+          <div class="input-field col s4">
+            <label>Telefono del trabajo</label>
+            <input type="text" class="validate" id="domicilio_socio"/>
+          </div>
+          <div class="input-field col s4">
+            <label>Número de celular</label>
+            <input type="text" class="validate" id="domicilio_socio"/>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s6">
+            <label for="fechaingreso">Fecha de Ingreso</label>
+            <br/>
+            <input id="fechaingreso" type="date" class="datepicker">
+          </div>
+          <div class="input-field col s6">
+            <label for="email_socio">Fecha de Salida</label>
+            <br/>
+            <input id="email_socio" type="date" class="datepicker">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <label for="fechaingreso">Causal de Retiro</label>
+            <textarea id="causal_socio" class="materialize-textarea"></textarea>
+          </div>
+        </div>
+
+        <div class="input-field col s4 offset-s4">
+            <a class="waves-effect waves-light btn-large light-blue lighten-1">
+            <i class="material-icons right">send</i>
+            Guardar</a>
+          </div>
+      </form>
+    </div>
+  <script type="text/javascript" src="../js/lib/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="../js/lib/materialize.min.js"></script>
+  <script type="text/javascript" src="../js/app.js"></script>
+  <script type="text/javascript" src="../js/events.js"></script>
+</body>
+</html>
