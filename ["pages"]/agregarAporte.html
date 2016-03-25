@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Agregar Aportes</title>
+  <meta charset="utf-8">
+  <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+    <nav>
+      <div class="nav-wrapper light-blue darken-2">
+        <a class="brand-logo titulo">Sección Socios</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="">Aportes</a></li>
+          <li><a href="">Créditos</a></li>
+          <li><a href="">Parametrización</a></li>
+		  <li><a href="">Volver</a></li>
+        </ul>
+     </div>
+    </nav>
+    <div class="row">
+      <form class="col s8 offset-s2" id="AgregarAportes">
+        <h1>Agregar Aporte</h1>
+
+        <div>
+          <div class="input-field col s6 ">
+            <label>Nombre</label>
+            <input type="text" class="validate" length="15" id="nombre_socio"/>
+          </div>
+          <div class="input-field col s6">
+            <label>Apellido</label>
+            <input type="text" class="validate" length="15" id="apellido_socio"/>
+          </div>
+        </div>
+
+		<div class="row">
+		
+		<div class="input-field col s6">
+            <label>Numero de Documento de Identidad</label>
+            <input type="text" class="validate" id="documento_socio"/>
+          </div>
+		  
+          <div class="input-field col s6">
+            <label for="fechaAporte">Fecha de Aporte</label>
+            <br/>
+            <input id="fechaAporte" type="date" class="datepicker">
+          </div>
+          
+		  
+		<div class="input-field col s6">
+            <label>Numero de comprobante de pago</label>
+            <input type="text" class="validate" id="comp_pago"/>
+          </div>
+		  
+		  
+        <div class="input-field col s4 offset-s4">
+            <a class="waves-effect waves-light btn-large light-blue lighten-1">
+            <i class="material-icons right">send</i>
+            Guardar</a>
+          </div>
+      </form>
+    </div>
+  <script type="text/javascript" src="../js/lib/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="../js/lib/materialize.min.js"></script>
+  <script type="text/javascript" src="../js/app.js"></script>
+  <script type="text/javascript" src="../js/events.js"></script>
+</body>
+</html>
