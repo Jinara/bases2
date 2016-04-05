@@ -1,61 +1,91 @@
 <?php
-
+/**
+ * Description of DataBase
+ *
+ * @author Rafael Barón
+ */
 class Database {
-
-    //atributos de la clase    
-    private $dbConn = NULL;
-    //para conectar con mysql        
-    private $host = NULL;
-    private $user = NULL;
-    private $password = NULL;
-    private $database = NULL;
-    private static $isMysql = true;
+    private $dbConn;
     private static $instance = NULL; //Instancia patrón Singleton
-
-    private function __construct() {
-        $configuracion = $this->obtenerConfiguracion();
-        self::$isMysql = $configuracion['is_mysql'];
-        
-        if (self::$isMysql) {
-            $this->host = $configuracion['host'];
-            $this->user = $configuracion['user'];
-            $this->database = $configuracion['database'];
-            $this->password = $configuracion['password'];
-
-            $this->dbConn = new mysqli($this->host, $this->user, $this->password, $this->database);
-            
-        } else {
-            
-            $this->dbConn = new SQLite3($configuracion['database'], SQLITE3_OPEN_READWRITE);
-            $this->dbConn->enableExceptions(true);
-            $this->dbConn->busyTimeout(3000);
+    /**
+     * 
+     * @param type $user Usuario de la BD
+     * @param type $pass Password del usuario
+     * @param type $str_conn String de la conexión (servidor).
+     */
+    protected function __construct($user, $pass, $str_conn) {
+        if(($user != NULL && $pass != NULL) && (isset($user)&& isset($pass))){
+            $this->dbConn = oci_connect($user, $pass, $str_conn);
+        }else{
+            $this->dbConn = oci_connect('no_registrado', 'admin', $str_conn);
         }
     }
-
-    public function exec_query($query) {
-        return $this->dbConn->query($query);
-    }
-
-    public function getData($query) {
-        $array = array();
-        $data = $this->dbConn->query($query);
-        if (self::$isMysql) {
-            while ($row = $data->fetch_array(MYSQLI_ASSOC)) {
-                $array[] = $row;
-            }
-        } else {
-            while ($row = $data->fetchArray(SQLITE3_ASSOC)) {
-                $array[] = $row;
-            }
-        }
+    /**
+     * Ejecuta un query. No retorna resultados.
+     * @param String $query Sentencia SQL a ejecutar.
+     * @param Object $conn Objeto de conexión con la Base de Datos.
+     * @return boolean $error False si no existe error en la consulta.
+     * En caso contrario retorna un array asociativo con la descripción del error. 
+     */
+    public function exec_query($conn, $query) {
         
-        return $array;
+        $error = false;
+        
+        $consulta = oci_parse($conn->getConn(), $query);
+        $has_error = oci_execute($consulta);
+        
+        
+       
+       !$has_error  ?$error = oci_error():$error = false;
+       
+        return $error;
     }
     
-    private function getConfiguration(){
-        $json_informacion = file_get_contents('../config/configuracionBaseDatos.json');
-        return json_decode($json_informacion, true);
+    /**
+     * Retorna el objeto de conexión.
+     * @return Object Objeto de conexión actual.
+     */
+    public function getConn(){
+        return $this->dbConn;
+    }
+    /**
+     * Retorna los resutados de la consulta en un array asociativo
+     * @param string $query Consulta SQL que se ejecutará.
+     * @param Object $conn Objeto de conexion con la BD.
+     * @return array Matriz con los resultados de la consulta 
+     * incluido error si llega a existir.
+     */
+    public function getData($conn, $query) {
+        
+        $consulta = oci_parse($conn->getConn(), $query);
+        $has_error = oci_execute($consulta);
+        
+        $resultado = array();
+        
+        !$has_error == false?$error = oci_error():$error = false;
+        while (($row = oci_fetch_array($consulta, OCI_BOTH)) != false) {
+            $resultado[] = $row;
+        }
+        
+        $resultado['error'] = $error;
+        
+        return $resultado;
+    }
+    /**
+     * Método get que devuelve la instancia Singleton. 
+     * Obtiene los datos de conexión del archivo de configuración.    
+     */
+    public static function getDBConnection($user, $pass, $str_conn) {
+        self::$instance = new DataBase($user, $pass, $str_conn);
+        return self::$instance;
+    }
+    /**
+     * Función que retorna true si la conexión a la BD se ha realizado con éxito.
+     * En caso contrario retorna false.
+     * @return type
+     */
+    public function is_connected() {
+        return $this->dbConn ? true : false;
     }
 }
-
 ?>
