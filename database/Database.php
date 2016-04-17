@@ -7,13 +7,19 @@
 class Database {
     private $dbConn;
     private static $instance = NULL; //Instancia patrón Singleton
+    private $user = null;
+    private $pass = null;
+    private $str_conn = null;
     /**
      * 
      * @param type $user Usuario de la BD
      * @param type $pass Password del usuario
      * @param type $str_conn String de la conexión (servidor).
      */
-    protected function __construct($user, $pass, $str_conn) {
+    protected function __construct() {
+    	$user = "fondo";
+	$pass = "fondo";
+	$str_conn = "localhost/XE";
         if(($user != NULL && $pass != NULL) && (isset($user)&& isset($pass))){
             $this->dbConn = oci_connect($user, $pass, $str_conn);
         }else{
@@ -27,20 +33,16 @@ class Database {
      * @return boolean $error False si no existe error en la consulta.
      * En caso contrario retorna un array asociativo con la descripción del error. 
      */
-    public function exec_query($conn, $query) {
-        
+    public function exec_query($query) {
         $error = false;
         
-        $consulta = oci_parse($conn->getConn(), $query);
+        $consulta = oci_parse($this->getConn(), $query);
         $has_error = oci_execute($consulta);
-        
-        
-       
-       !$has_error  ?$error = oci_error():$error = false;
-       
+        $error = !$has_error ? oci_error($consulta) : true;
         return $error;
     }
     
+
     /**
      * Retorna el objeto de conexión.
      * @return Object Objeto de conexión actual.
@@ -55,9 +57,9 @@ class Database {
      * @return array Matriz con los resultados de la consulta 
      * incluido error si llega a existir.
      */
-    public function getData($conn, $query) {
+    public function getData($query) {
         
-        $consulta = oci_parse($conn->getConn(), $query);
+        $consulta = oci_parse($this->getConn(), $query);
         $has_error = oci_execute($consulta);
         
         $resultado = array();
@@ -75,8 +77,8 @@ class Database {
      * Método get que devuelve la instancia Singleton. 
      * Obtiene los datos de conexión del archivo de configuración.    
      */
-    public static function getDBConnection($user, $pass, $str_conn) {
-        self::$instance = new DataBase($user, $pass, $str_conn);
+    public static function getDBConnection() {
+        self::$instance = new DataBase();
         return self::$instance;
     }
     /**

@@ -36,6 +36,9 @@ class Entity {
     public static function rollBack() {
         self::getConn()->exec_query('ROLLBACK');
     }
+    public static function commit() {
+    	return self::getConn()->exect_query('COMMIT');
+    }
 
     /**
      * @return string retorna el nombre de la tabla.
