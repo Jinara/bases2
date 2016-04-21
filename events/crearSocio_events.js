@@ -72,6 +72,6 @@ function saveSocio(){
                                 }
                             })
                             .fail(function () {
-                                
+                               console.log('fallo servicio'); 
 	})
 }

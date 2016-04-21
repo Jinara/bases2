@@ -38,7 +38,10 @@ class Database {
         
         $consulta = oci_parse($this->getConn(), $query);
         $has_error = oci_execute($consulta);
+	//echo '-----------h'.$has_error.'h--------------';
         $error = !$has_error ? oci_error($consulta) : true;
+	//echo '-----------e'.$error.'e--------------';
+	echo $query;
         return $error;
     }
     
@@ -58,10 +61,9 @@ class Database {
      * incluido error si llega a existir.
      */
     public function getData($query) {
-        
+       echo $query; 
         $consulta = oci_parse($this->getConn(), $query);
         $has_error = oci_execute($consulta);
-        
         $resultado = array();
         
         !$has_error == false?$error = oci_error():$error = false;

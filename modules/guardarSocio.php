@@ -18,7 +18,7 @@ try {
     $fecha_ingreso = $_POST['fingreso'];
    // if ($_POST['id'] == '') {//crear Usuario
             //organiza el array de datos del nuevo Usuario
-            $data_usuario[] = array('field' => 'K_ID_USUARIO', 'content' => '1236', 'type' => 'text');
+            $data_usuario[] = array('field' => 'K_ID_USUARIO', 'content' => '002477', 'type' => 'text');
             $data_usuario[] = array('field' => 'N_USUARIO', 'content' => $_POST['nombre'], 'type' => 'text');
             $data_usuario[] = array('field' => 'N_APELLIDO_USUARIO', 'content' => $_POST['apellido'], 'type' => 'text');
             $data_usuario[] = array('field' => 'O_TIPO_DOC', 'content' => $_POST['tipo_doc'], 'type' => 'text');
@@ -32,10 +32,13 @@ try {
             $data_usuario[] = array('field' => 'O_CORREO_ELECTRONICO', 'content' => $_POST['email'], 'type' => 'text');
             $data_usuario[] = array('field' => 'O_PASSWORD', 'content' => $pass, 'type' => 'text');
 		
-	    $last_socio = $usuario_obj->getLast();
+	    //Creacion de usuario
+            $usuario_tabla = $usuario_obj->create($data_usuario);
+	    //accedo al ultimo usuario creado para obterner su id
+	    $last_socio = $usuario_obj->getLast('K_ID_USUARIO');
 	    $last_socio_id = $last_socio['K_ID_USUARIO'];
 	    $fondo_obj = Fondo::getInstance();
-	    $last_fondo = $fondo_obj->getLast();
+	    $last_fondo = $fondo_obj->getLast('K_NIT_FONDO');
 	    $last_fondo_id = $last_fondo['K_NIT_FONDO'];
 
 
@@ -50,8 +53,6 @@ try {
 	}
 	    $usuario_nomb = NULL;
 	    $socio_o_admin_tabla = NULL;
-            $usuario_tabla = $usuario_obj->create($data_usuario); 
-	    echo '----------'.$usuario_tabla.'+++++++++++++++++++++++';
 	    if($usuario_tabla){
 	    	echo 'hola';
 	    	$socio_o_admin_tabla = $socio_obj->create($data_socio);
