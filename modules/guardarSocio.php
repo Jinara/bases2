@@ -9,7 +9,6 @@ try {
 
     $usuario_obj = Usuario::getInstance();
     $data_usuario = array(); //datos para tabla usuario
-    $data_socio = array(); //datos para tabla socio o admin
     $name = $_POST['nombre'];
     $pass = $_POST['password'];
     $socio_obj = NULL;
@@ -42,19 +41,19 @@ try {
 	    $last_fondo_id = $last_fondo['K_NIT_FONDO'];
 
 
+    	$data_socio = array(); //datos para tabla socio o admin
     	if($type == 'socio'){
 	    $socio_obj = Socio::getInstance();	
-	    $data_socio = array('field' => 'O_ESTADO_SOCIO', 'content' => 'P', 'type' => 'text');	    
-	    $data_socio = array('field' => 'F_INICIO', 'content' => "to_date('$fecha_ingreso','yyyy-mm-dd')", 'type' => 'date');
-	    $data_socio = array('field' => 'K_NIT_FONDO', 'content' => $last_fondo_id, 'type' => 'text');
-	    $data_socio = array('field' => 'K_ID_SOCIO', 'content' => $last_socio_id, 'type' => 'text');
+	    $data_socio[] = array('field' => 'O_ESTADO_SOCIO', 'content' => 'P', 'type' => 'text');	    
+	    $data_socio[] = array('field' => 'F_INICIO', 'content' => "to_date('$fecha_ingreso','yyyy-mm-dd')", 'type' => 'date');
+	    $data_socio[] = array('field' => 'K_NIT_FONDO', 'content' => $last_fondo_id, 'type' => 'text');
+	    $data_socio[] = array('field' => 'K_ID_SOCIO', 'content' => $last_socio_id, 'type' => 'text');
 	}else{
 	    $socio_obj = Socio_Administrador::getInstance();	
 	}
 	    $usuario_nomb = NULL;
 	    $socio_o_admin_tabla = NULL;
 	    if($usuario_tabla){
-	    	echo 'hola';
 	    	$socio_o_admin_tabla = $socio_obj->create($data_socio);
 		if($socio_o_admin_tabla == true){
 			$usuario_nomb = $usuario_obj->createUsuarioBD($type,$_POST['nick'],$pass);
@@ -66,13 +65,12 @@ try {
 	    	$resp++;
 	    	if(!is_null($usuario_tabla)){
 			$resp++;	
-			if(!is_null(socio_o_admin_tabla)){
+			if(!is_null($socio_o_admin_tabla)){
 				$resp++;
 			}
 		}
 	    }
 	    $retorno['respuesta'] = $resp == 3 ? 'true': $usuario_nomb .'  '. $usuario_tabla . '  ' . $socio_o_admin_tabla; 
-	    print_r($retorno['respuesta']);
             $retorno['mensaje'] = $retorno['respuesta'] == 'true' ? 'Operación Exitosa.' : 'Error al Crear Usuario ' . $_POST['nombre'];
   //  } else {
 

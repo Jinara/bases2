@@ -88,6 +88,13 @@ class Entity {
                         $query.= "'" . $d['content'] . "',";
                     }
                     break;
+                case 'date':
+                    if (is_null($d['content'])) {
+                        $query.= "NULL,";
+                    } else {
+                        $query.= $d['content'] . ",";
+                    }
+                    break;
                 default:
                     $query.= "'" . $d['content'] . "',";
                     break;

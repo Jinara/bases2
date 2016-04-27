@@ -18,5 +18,11 @@ class Socio extends Entity {
 
         return self::$instance;
     }
+
+    public function parseCreateSocio($query){
+    	$splitted = split(',', $query);
+	$splitted[5] = str_replace("'", "", $splitted[5]);
+	return implode(",", $splitted);
+    }
     
 }

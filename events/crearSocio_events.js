@@ -66,7 +66,7 @@ function saveSocio(){
                     })
                             .done(function (data) {
                                 if (data.respuesta) {
-                                    console.log('holi! ya guardo socio');
+                                    console.log('holi! ya guardo socio', data);
                                 } else {
                                     console.log('holi! NO guardo socio');
                                 }
