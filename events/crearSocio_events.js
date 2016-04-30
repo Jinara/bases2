@@ -2,8 +2,6 @@ $(document).ready(function () {
 	$("#guardar_socio").on("click", function () {
         	saveSocio();
 	});
-
-
 });
 
 function getEstadoCivil(estado){

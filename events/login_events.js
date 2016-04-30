@@ -1,7 +1,13 @@
 
 $(document).ready(function () {
 	$("#login").on("click", function () {
-        	login();
+		var val_nick = new LiveValidation('id'); 
+		val_nick.add(Validate.Presence, {validMessage: "Ok", failureMessage: "Campo obligatorio."}); 
+		var val_pass = new LiveValidation('pass'); 
+		val_pass.add(Validate.Presence, {validMessage: "Ok", failureMessage: "Campo obligatorio."}); 
+		if (LiveValidation.massValidate([val_nick, val_pass])) { 
+        		login();
+		}  
 	});
 });
 
