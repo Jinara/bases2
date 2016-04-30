@@ -16,9 +16,7 @@ class Database {
      * @param type $pass Password del usuario
      * @param type $str_conn String de la conexión (servidor).
      */
-    protected function __construct() {
-    	$user = "fondo";
-	$pass = "fondo";
+    protected function __construct($user = 'fondo', $pass = 'fondo') {
 	$str_conn = "localhost/XE";
         if(($user != NULL && $pass != NULL) && (isset($user)&& isset($pass))){
             $this->dbConn = oci_connect($user, $pass, $str_conn);

@@ -62,16 +62,18 @@ function saveSocio(){
 				causal: $('#causal_socio').val(),
 				password: $('#contraseña_socio').val(),
 				type: 'socio'
-				}
+  			},
+	          	success: function(data){good(data)}, 
+		  	error: function(data){bad(data)}
                     })
-                            .done(function (data) {
-                                if (data.respuesta) {
-                                    console.log('holi! ya guardo socio', data);
-                                } else {
-                                    console.log('holi! NO guardo socio');
-                                }
-                            })
-                            .fail(function () {
-                               console.log('fallo servicio'); 
-	})
+}
+function good(data){
+	$('#message_crear_socio').text('Socio creado con exito!');
+	$('#modal_crear_socio').openModal(function(){
+		window.location = "../index.html";
+	});
+}
+function bad(data){
+	$('#message_crear_socio').text('Error al crear socio, por favor vuelva a intentarlo');
+	$('#modal_crear_socio').openModal();
 }
