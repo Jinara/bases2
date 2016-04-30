@@ -14,17 +14,17 @@ function login(){
                   timeout: 5000,
                   data: {
   			nick: $('#id').val(),
-  			password: $('#pass').val(),
-  			type: 'socio'
-  			}
+  			pass: $('#pass').val()
+  			},
+	          success: function(data){good(data)}, 
+		  error: function(data){bad(data)}
               })
-                      .done(function (data) {
-                          if (data.respuesta) {
-                          } else {
-                          }
-                      })
-                      .fail(function () {
-                         console.log('fallo servicio'); 
-	})
 }
+
+function good(data){
+	window.location = "../index.html";
+}
+function bad(data){
+	$('#message').text('Usuario o clave incorrectos, por favor vuelva a intentarlo');
+	$('#modal1').openModal();
 }
