@@ -2,42 +2,12 @@
 
 require_once 'Database.php';
 
-class Entity {
+class Entity extends Database {
 
     protected $tableName;
 
     function __construct($tableName) {
         $this->tableName = $tableName;
-    }
-
-    /**
-     * Método que ejecuta un BEGIN TRANSACTION.
-     * Se usa para dar inicio a una transacción.
-     */
-    public static function beginTransaction() {
-        self::getConn()->exec_query("BEGIN TRANSACTION;");
-    }
-
-    /**
-     * Método que ejecutao un END TRANSACTION o, lo que es lo mismo en SQLITE,
-     * un COMMIT.
-     * Se usa cuando se quieren confirmar los cambios en la Base de Datos en 
-     * medio de una transacción.
-     */
-    public static function endTransaction() {
-        self::getConn()->exec_query("END TRANSACTION;");
-    }
-
-    /**
-     * Método que hace rollback a una transacción.
-     * Se usa en caso de que no se quieran confirmar los cambios en la 
-     * Base de Datos en medio de una transacción.
-     */
-    public static function rollBack() {
-        self::getConn()->exec_query('ROLLBACK');
-    }
-    public static function commit() {
-    	return self::getConn()->exect_query('COMMIT');
     }
 
     /**
@@ -47,12 +17,6 @@ class Entity {
         return $this->tableName;
     }
 
-    /**
-     * @return Database retorna la conexión actual con la BD.
-     */
-    public static function getConn() {
-        return Database::getDBConnection();
-    }
 
     /**
      * Método que crea un nuevo registro en la BD.
@@ -62,8 +26,9 @@ class Entity {
      * type: tipo de dato.
      */
     public function create(array $data) {
-
-
+	if (session_status() == PHP_SESSION_NONE) {
+    		session_start();
+    	}
         $query = "INSERT INTO " . $this->tableName . "(";
 
         foreach ($data as $d) {
@@ -102,7 +67,8 @@ class Entity {
         }
         
         $query = substr($query, 0, strlen($query) - 1) . ")";
-        return self::getConn()->exec_query($query);
+	$conn = parent::getDBConnection($_SESSION['USERNAME'], $_SESSION['PASS']);
+        return parent::exec_query($conn, $query);
     }
 
     /**
@@ -111,6 +77,9 @@ class Entity {
      * @param string $condition Condiciones para hacer el update.
      */
     public function update(array $data, $condition = "") {
+	if (session_status() == PHP_SESSION_NONE) {
+    		session_start();
+    	}
         $query = "UPDATE " . $this->tableName . " SET ";
 
         foreach ($data as $d) {
@@ -132,7 +101,8 @@ class Entity {
         if ($condition != "") {
             $query .= " WHERE " . $condition;
         }
-        return self::getConn()->exec_query($query);
+	$conn = parent::getDBConnection($_SESSION['USERNAME'], $_SESSION['PASS']);
+        return parent::exec_query($conn, $query);
     }
 
     /**
@@ -140,8 +110,12 @@ class Entity {
      * @param string $condition condiciones bajo las cuales se van a eliminar los campos.
      */
     public function delete($condition = "") {
+	if (session_status() == PHP_SESSION_NONE) {
+    		session_start();
+    	}
         $query = "DELETE FROM " . $this->tableName . " WHERE " . $condition;
-        return self::getConn()->exec_query($query);
+	$conn = parent::getDBConnection($_SESSION['USERNAME'], $_SESSION['PASS']);
+        return parent::exec_query($conn, $query);
     }
 
     /**
@@ -149,9 +123,13 @@ class Entity {
      * @return array todos los registros en la base de datos.
      */
     public function getAll() {
+	if (session_status() == PHP_SESSION_NONE) {
+    		session_start();
+    	}
         $query = "SELECT * FROM " . $this->tableName;
 
-        return self::getConn()->getData($query);
+	$conn = parent::getDBConnection($_SESSION['USERNAME'], $_SESSION['PASS']);
+        return parent::exec_query($conn, $query);
     }
 
     /**
@@ -160,8 +138,12 @@ class Entity {
      * @return array retorna el resultado de la busqueda.
      */
     public function find($id) {
+	if (session_status() == PHP_SESSION_NONE) {
+    		session_start();
+    	}
         $query = "SELECT * FROM " . $this->tableName . " WHERE id = " . $id;
-        return self::getConn()->getData($query);
+	$conn = parent::getDBConnection($_SESSION['USERNAME'], $_SESSION['PASS']);
+        return parent::exec_query($conn, $query);
     }
 
     /**
@@ -177,7 +159,9 @@ class Entity {
      * false: no elimina los registros existentes (cuando se quiere insertar solamente)
      */
     public function updateHasTable(array $fields, array $data, $delete = false) {
-
+	if (session_status() == PHP_SESSION_NONE) {
+    		session_start();
+    	}
         if ($delete) {
             //elimina los registros
             self::delete($fields[0]['field'] . "=" . $fields[0]['value']);
@@ -217,7 +201,8 @@ class Entity {
 
                 $query = substr($query, 0, strlen($query) - 1);
                 //ejecuta el query
-                self::getConn()->exec_query($query);
+		$conn = parent::getDBConnection($_SESSION['USERNAME'], $_SESSION['PASS']);
+        	parent::exec_query($conn, $query);
             }
             return true;
         }
@@ -228,14 +213,21 @@ class Entity {
      * @return Object array con los datos del registro 
      */
     public function getLast($cond) {
+	if (session_status() == PHP_SESSION_NONE) {
+    		session_start();
+    	}
         $query = "SELECT * FROM " . $this->tableName . " "
                 . "WHERE ROWNUM <= 1 "
                 . "ORDER BY " . $cond . " DESC ";
-        $result = self::getConn()->getData($query);
+	$conn = parent::getDBConnection($_SESSION['USERNAME'], $_SESSION['PASS']);
+        $result = parent::getData($conn, $query);
         return isset($result[0]) ? $result[0] : null;
     }
 
     public function findByData($data) {
+	if (session_status() == PHP_SESSION_NONE) {
+    		session_start();
+    	}
         $query = "SELECT * FROM $this->tableName 
                   WHERE ";
 
@@ -254,7 +246,8 @@ class Entity {
         }
 
         $query = substr($query, 0, strlen($query) - 4);
-        return self::getConn()->getData($query);
+	$conn = parent::getDBConnection($_SESSION['USERNAME'], $_SESSION['PASS']);
+        return parent::getData($conn, $query);
     }
     
     /**
@@ -266,6 +259,9 @@ class Entity {
      * @return array Array con los resultados de la busqued.
      */
     function findByField($field, $value, $type){
+	if (session_status() == PHP_SESSION_NONE) {
+    		session_start();
+    	}
         
         $query = "SELECT * FROM ".$this->tableName." 
                   WHERE $field ";
@@ -286,5 +282,4 @@ class Entity {
     }
 
 }
-
 ?>

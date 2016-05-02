@@ -1,11 +1,12 @@
 <?php
 
 try{
-  require_once('../database/Database.php');
-  $username = $_POST['nick'];
+  require_once('../DAO/Usuario.php');
+   $username = $_POST['nick'];
   $pass= $_POST['pass'];
+  $usuario = Usuario::getInstance();
   
-  $retorno['respuesta'] = Database::loginDB($username,$pass);
+  $retorno['respuesta'] = $usuario->loginDB($username,$pass);
   if ($retorno['respuesta']){
     $retorno['respuesta'] = true;
     $retorno['mensaje'] = "Usuario logueado";
