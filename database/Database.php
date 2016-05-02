@@ -24,6 +24,14 @@ class Database {
             $this->dbConn = oci_connect('no_registrado', 'admin', $str_conn);
         }
     }
+    public function loginDB($user, $pass){
+      try{
+      	$dbConn = new Database($user, $pass);
+	return $dbConn;	
+      }catch(Exception $e){
+        return false;
+      }
+    }
     /**
      * Ejecuta un query. No retorna resultados.
      * @param String $query Sentencia SQL a ejecutar.

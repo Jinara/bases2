@@ -36,18 +36,4 @@ class Usuario extends Entity {
 	}
 
     }
-
-    public function login($user, $pass){
-      try{
-	$str_conn = "localhost/XE";
-        if(($user != NULL && $pass != NULL) && (isset($user)&& isset($pass))){
-            $db = oci_connect($user, $pass, $str_conn);
-        }else{
-            $db->dbConn = oci_connect('no_registrado', 'admin', $str_conn);
-        }
-	return $db;	
-      }catch(Exception $e){
-        return false;
-      }
-    }
 }
