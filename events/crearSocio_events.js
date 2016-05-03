@@ -1,6 +1,12 @@
 $(document).ready(function () {
-	$("#guardar_socio").on("click", function () {
+	$('#guardar_socio').addClass('disabled');
+	$("#guardar_socio").on("click", function (evt) {
+		if(!$(this).hasClass('disabled'))
         	saveSocio();
+	});
+
+	$("#validar").on("click", function () {
+        	validarTj();
 	});
 });
 
@@ -32,6 +38,22 @@ function getSexo(sexo){
 	return sexo == 1 ? 'F' : 'M';
 }
 
+function validarTj(){
+	if(exist()){
+	  $('#message_validar').text('Tarjeta válida!');
+	  console.log('holii')
+	  $('#modal_validar').openModal();
+	  $('#guardar_socio').removeClass("disabled").addClass('waves-effect waves-light submit');
+	}else{
+	  $('#message_validar').text('Tarjeta inválida!');
+	  $('#modal_validar').openModal();
+	}
+}
+
+function exist(){
+return true;
+	return (Math.floor((Math.random() * 10) + 1)) == 1 ? true : false;
+}
 function saveSocio(){
         console.log('haciendo servicio:');
 	console.log(getTipoDoc($('#tipodoc_socio').val())),
@@ -67,9 +89,8 @@ function saveSocio(){
 }
 function good(data){
 	$('#message_crear_socio').text('Socio creado con exito!');
-	$('#modal_crear_socio').openModal(function(){
+	$('#modal_crear_socio').openModal();
 		window.location = "../index.html";
-	});
 }
 function bad(data){
 	$('#message_crear_socio').text('Error al crear socio, por favor vuelva a intentarlo');
