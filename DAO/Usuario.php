@@ -67,7 +67,10 @@ class Usuario extends Entity {
     }
 
     private function iniciarSesion($usuario){
-        session_start();
+    	session_destroy();
+    	if (session_status() == PHP_SESSION_NONE) {
+          session_start();
+	  }
         $_SESSION['USERNAME'] = isset($usuario['USERNAME'])?$usuario['USERNAME']:NULL;
         $_SESSION['PASS'] = isset($usuario['PASS'])?$usuario['PASS']:NULL;
         
