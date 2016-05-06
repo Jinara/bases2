@@ -8,7 +8,7 @@ class Usuario extends Entity {
     private static $instance = NULL;
 
     public function __construct() {
-        parent::__construct("usuario");
+        parent::__construct("fondo.usuario");
     }
 
     public static function getInstance() {

@@ -29,7 +29,7 @@ try {
             $data_usuario[] = array('field' => 'V_TELEFONO', 'content' => $_POST['tdomicilio'], 'type' => 'text');
             $data_usuario[] = array('field' => 'O_DIRECCION', 'content' => $_POST['ddomicilio'], 'type' => 'text');
             $data_usuario[] = array('field' => 'O_CORREO_ELECTRONICO', 'content' => $_POST['email'], 'type' => 'text');
-            $data_usuario[] = array('field' => 'O_PASSWORD', 'content' => $pass, 'type' => 'text');
+            //$data_usuario[] = array('field' => 'O_PASSWORD', 'content' => $pass, 'type' => 'text');
 		
 	    //Creacion de usuario
             $usuario_tabla = $usuario_obj->create($data_usuario);

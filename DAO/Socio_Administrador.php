@@ -9,7 +9,7 @@ class Socio_Administrador extends Entity {
     private static $instance = NULL;
 
     public function __construct() {
-        parent::__construct("socio_administrador");
+        parent::__construct("fondo.socio_administrador");
     }
 
     public static function getInstance() {
