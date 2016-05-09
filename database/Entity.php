@@ -268,7 +268,7 @@ class Entity extends Database {
         
         switch ($type){
             case 'text':
-                $query .= 'LIKE "'.$value.'"';
+                $query .= 'LIKE '.$value.'';
                 break;
             case 'int':
                 $query .= '='.$value;
@@ -278,7 +278,8 @@ class Entity extends Database {
                 break;
         }
         
-        return self::getConn()->getData($query);
+	$conn = parent::getDBConnection($_SESSION['USERNAME'], $_SESSION['PASS']);
+        return parent::getData($conn, $query);
     }
 
 }

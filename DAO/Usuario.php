@@ -71,9 +71,14 @@ class Usuario extends Entity {
     	if (session_status() == PHP_SESSION_NONE) {
           session_start();
 	  }
-        $_SESSION['USERNAME'] = isset($usuario['USERNAME'])?$usuario['USERNAME']:NULL;
-        $_SESSION['PASS'] = isset($usuario['PASS'])?$usuario['PASS']:NULL;
-        
+        $_SESSION['USERNAME'] = isset($usuario['USERNAME']) ? $usuario['USERNAME'] : NULL;
+        $_SESSION['PASS'] = isset($usuario['PASS']) ? $usuario['PASS'] : NULL;
         $conn = parent::getDBConnection($_SESSION['USERNAME'], $_SESSION['PASS']);
+        $_SESSION['ID'] = $this->getID($_SESSION['USERNAME']);
+    }
+
+    private function getID($username){
+    	$user = $this->findByField('N_USERNAME', "'".$username."'", 'text');
+	return $user[0]['K_ID_USUARIO']; 
     }
 }
