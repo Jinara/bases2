@@ -17,6 +17,9 @@ App.events = (function(){
 	          success: function(data){console.log("logout exitoso")}, 
 		  error: function(data){console.log("error en logout")}
               })
-    window.location = "pages/login.html"
+  });
+  $('#consultar_socio').click(function(){
+  	//	OJOOOO
+	//	PONER UN FIND EN LOS RESPONSETEXT BUSCANDO TIPOS DE EROORES Y ASI PODER DECIR QUE ES LO QUE PASA...LPONERLO GLOBAL...
   });
 })();
