@@ -31,6 +31,6 @@ function good(data){
 	window.location = "../index.html";
 }
 function bad(data){
-	$('#message').text('Usuario o clave incorrectos, por favor vuelva a intentarlo');
+	$('#message').text(data.responseText);
 	$('#modal1').openModal();
 }
