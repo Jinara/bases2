@@ -8,7 +8,7 @@ class tipo_pago extends Entity {
     private static $instance = NULL;
 
     public function __construct() {
-        parent::__construct("tipo_pago");
+        parent::__construct("fondo.tipo_pago");
     }
 
     public static function getInstance() {

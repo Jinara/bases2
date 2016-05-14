@@ -10,11 +10,15 @@ try {
 
 
     $credito_obj = Credito::getInstance();
+    $usuario_obj = Usuario::getInstance();
     $data_credito = array(); //datos para tabla credito
    
     $name = $_POST['nombre'];
     $pass = $_POST['password'];
     $socio_obj = NULL;
+
+    $usuario_logueado = $usuario_obj->findByField('n_username', $_SESSION['USERNAME'], 'text');
+    $id = $usuario_logueado['k_id_usuario'];
 
     $type = $_POST['type'];
     $fecha_solicitud = $_POST['fsolicitud'];
@@ -26,7 +30,7 @@ try {
             $data_credito[] = array('field' => 'V_NUM_CUOTAS', 'content' => $_POST['n_cuotas'], 'type' => 'text');
             $data_credito[] = array('field' => 'F_APROBACION', 'content' => "to_date('$fsolicitud','yyyy-mm-dd')", 'type' => 'date');
             //$data_credito[] = array('field' => ,'V_PLAZO', 'content' => $_POST[] );
-            $data_credito[] = array('field' => 'K_ID_SOCIO', 'content' => $_SESSION['id'], 'type' => 'text');
+            $data_credito[] = array('field' => 'K_ID_SOCIO', 'content' => $id, 'type' => 'text');
             $data_credito[] = array('field' => 'K_ID_TIPO_CREDITO', 'content' => $_POST['tipo_cred'], 'type' => 'text');
             
 
@@ -41,10 +45,9 @@ try {
 
 
     	
-	    $usuario_nomb = NULL;
+/*	    $usuario_nomb = NULL;
 	    $socio_o_admin_tabla = NULL;
 	    if($usuario_tabla){
-	    	echo 'hola';
 	    	$socio_o_admin_tabla = $socio_obj->create($data_socio);
 		if($socio_o_admin_tabla == true){
 			$usuario_nomb = $usuario_obj->createUsuarioBD($type,$_POST['nick'],$pass);
@@ -67,7 +70,8 @@ try {
   //  } else {
 
     //}
-} catch (Exception $e) {
+} */
+catch (Exception $e) {
     $retorno['respuesta'] = false;
     $retorno['mensaje'] = 'Error al intentar crear credito.'.$e->getMessage();
 }

@@ -18,7 +18,7 @@ function getTipoPago(tpago){
 }
 
 function savePagoCredito(){
-        console.log('haciendo servicio:');
+      //  console.log('haciendo servicio:');
 	console.log(getTipoPago($('#tipo_pago').val())),
                     $.ajax({
                         type: "POST",
@@ -35,16 +35,17 @@ function savePagoCredito(){
 				id_cred: $('#id_credito').val(),
 				
 				type: 'pago_credito'
-				}
+				},
+	          	success: function(data){good(data)}, 
+		  	error: function(data){bad(data)}
                     })
-                            .done(function (data) {
-                                if (data.respuesta) {
-                                    console.log('Pago credito OK');
-                                } else {
-                                    console.log('Pago credito FAILED');
-                                }
-                            })
-                            .fail(function () {
-                               console.log('fallo servicio'); 
-	})
+}
+function good(data){
+	$('#message_pagar_credito').text('Credito pagado con exito!');
+	$('#modal_pagar_credito').openModal();
+		window.location = "../index.html";
+}
+function bad(data){
+	$('#message_pagar_credito').text(data.responseText);
+	$('#modal_pagar_credito').openModal();
 }
