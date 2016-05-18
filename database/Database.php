@@ -82,7 +82,7 @@ class Database {
      */
     public function getData($conn, $query) {
         $consulta = oci_parse($conn->getConn(), $query);
-	//echo $query;
+//	echo $query;
         $has_error = oci_execute($consulta);
         $resultado = array();
         

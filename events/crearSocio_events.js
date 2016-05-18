@@ -1,3 +1,4 @@
+App.crearSocio_events = (function(app){
 $(document).ready(function () {
 	$('#guardar_socio').addClass('disabled');
 	$("#guardar_socio").on("click", function (evt) {
@@ -8,9 +9,30 @@ $(document).ready(function () {
 	$("#validar").on("click", function () {
         	validarTj();
 	});
+
+	$('#tipodoc_socio').material_select();
+
+	if(sessionStorage.user){
+	user = JSON.parse(sessionStorage.user);
+	$('#id_socio').val(user['K_ID_USUARIO'])
+	var sexo = user['O_SEXO'] == 1 ? 'F' : 'M';
+	$('#sexo_socio').val(sexo)
+	$('#apellido_socio').val(user['N_APELLIDO_USUARIO'])
+	$('#tipodoc_socio').val(getTipoDoc(null, user['O_TIPO_DOC']))
+	$('#estadocivil_socio').val(getEstadoCivil(null, user['O_ESTADO_CIVIL']))
+	$('#nombre_socio').val(user['N_USUARIO'])
+	$('#nick_socio').val(user['N_USERNAME'])
+	$('#numdoc_socio').val(user['O_TIPO_DOC'])
+	$('#nombre_socio').val(user['V_NUM_DOC'])
+	$('#ocupacion_socio').val(user['N_OCUPACION'])
+	$('#email_socio').val(user['O_CORREO_ELECTRONICO'])
+	$('#ddomicilio_socio').val(user['O_DIRECCION'])
+	$('#tdomicilio_socio').val(user['V_TELEFONO'])
+	sessionStorage.removeItem('user');
+	}
 });
 
-function getEstadoCivil(estado){
+function getEstadoCivil(estado = null, _estado = null){
 	estado = parseInt(estado);
 	switch(estado){
 		case 1: return 'S'; break;
@@ -18,15 +40,26 @@ function getEstadoCivil(estado){
 		case 3: return 'C'; break;
 		case 4: return 'U'; break;
 	}
+	switch(_estado){
+		case 'S': return 1; break;
+		case 'V': return 2; break;
+		case 'C': return 3; break;
+		case 'U': return 4; break;
+	}
 	return 0;
 }
 
-function getTipoDoc(tipo){
+function getTipoDoc(tipo = null, _tipo = null){
 	tipo = parseInt(tipo);
 	switch(tipo){
 		case 1: return 'CC'; break;
 		case 2: return 'P'; break;
 		case 3: return 'CE'; break;
+	}
+	switch(_tipo){
+		case 'CC': return 1; break;
+		case 'P': return 2; break;
+		case 'CE': return 3; break;
 	}
 	return 0;
 }
@@ -55,14 +88,13 @@ return true;
 	return (Math.floor((Math.random() * 10) + 1)) == 1 ? true : false;
 }
 function saveSocio(){
-        console.log('haciendo servicio:');
-	console.log(getTipoDoc($('#tipodoc_socio').val())),
                     $.ajax({
                         type: "POST",
                         url: "../modules/guardarSocio.php",
                         dataType: "json",
                         timeout: 5000,
                         data: {
+				id: $('#id_socio').val(),
 				nombre: $('#nombre_socio').val(),
 				apellido: $('#apellido_socio').val(),
 				nick: $('#nick_socio').val(),
@@ -96,3 +128,11 @@ function bad(data){
 	$('#message_crear_socio').text('Error al crear socio, por favor vuelva a intentarlo');
 	$('#modal_crear_socio').openModal();
 }
+function renderSocio(user){
+	window.location = "../pages/crearSocio.html";
+	sessionStorage.user = JSON.stringify(user);
+}
+return {
+	renderSocio: renderSocio
+}
+})(App)

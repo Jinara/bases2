@@ -1,4 +1,4 @@
-App.events = (function(){
+App.events = (function(app){
 	$(document).ready(function() {
     $('select').material_select();
   });
@@ -22,4 +22,4 @@ App.events = (function(){
   	//	OJOOOO
 	//	PONER UN FIND EN LOS RESPONSETEXT BUSCANDO TIPOS DE EROORES Y ASI PODER DECIR QUE ES LO QUE PASA...LPONERLO GLOBAL...
   });
-})();
+})(App);

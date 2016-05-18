@@ -15,7 +15,8 @@ try {
 
     $type = $_POST['type'];
     $fecha_ingreso = $_POST['fingreso'];
-   // if ($_POST['id'] == '') {//crear Usuario
+    if ($_POST['id'] == '') {//crear Usuario
+    echo "creando"
             //organiza el array de datos del nuevo Usuario
             $data_usuario[] = array('field' => 'K_ID_USUARIO', 'content' => '002477', 'type' => 'text');
             $data_usuario[] = array('field' => 'N_USUARIO', 'content' => $_POST['nombre'], 'type' => 'text');
@@ -72,9 +73,9 @@ try {
 	    }
 	    $retorno['respuesta'] = $resp == 3 ? 'true': $usuario_nomb .'  '. $usuario_tabla . '  ' . $socio_o_admin_tabla; 
             $retorno['mensaje'] = $retorno['respuesta'] == 'true' ? 'Operación Exitosa.' : 'Error al Crear Usuario ' . $_POST['nombre'];
-  //  } else {
-
-    //}
+    } else {
+echo "editando"
+    }
 } catch (Exception $e) {
     $retorno['respuesta'] = false;
     $retorno['mensaje'] = 'Error al intentar crear o editar Usuario.'.$e->getMessage();
