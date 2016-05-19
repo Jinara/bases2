@@ -13,14 +13,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
+  <nav> 
+   <ul id="dropdown3" class="dropdown-content">
+       <li><a id="agregar_aporte" href="agregarAporte.html">Agregar aporte</a></li>
+   </ul>
+
+   <ul id="dropdown2" class="dropdown-content">
+       <li><a id="solicitar_credito" href="solicitarCredito.html">Solicitar crédito</a></li>
+       <li><a id="pagar_credito" href="pagarCredito.html">Pagar crédito</a></li>
+   </ul>
+
+   <ul id="dropdown1" class="dropdown-content">
+       <li><a id="crear_socio" href="consultarEstado.html">Consultar Socio</a></li>
+   </ul>
     <nav>
       <div class="nav-wrapper light-blue darken-2">
-        <a class="brand-logo titulo">Sección Administración</a>
+        <a class="brand-logo titulo">Sección Administrador</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="">Aportes</a></li>
-          <li><a href="">Créditos</a></li>
-          <li><a href="">Parametrización</a></li>
-		  <li><a href="">Volver</a></li>
+    <li><a class="dropdown-button" href="#!" data-activates="dropdown3">Aportes<i class="material-icons right">arrow_drop_down</i></a></li>
+    <li><a class="dropdown-button" href="#!" data-activates="dropdown2">Créditos<i class="material-icons right">arrow_drop_down</i></a></li>
+    <li><a href="estParametros.html">Parametrización</a></li>
+    <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Socios<i class="material-icons right">arrow_drop_down</i></a></li>
+          <li><a href="login.html">Salir</a></li>
         </ul>
      </div>
     </nav>
