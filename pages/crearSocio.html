@@ -33,7 +33,7 @@
         <h1>Agregar Socio</h1>
         <input type="number" style="display: none" length="15" id="id_socio"/>
 
-          <div class="rowi center-align">
+          <div id = "tarjeta" class="rowi center-align">
             <div class="col s12">
               <div class="card light-blue darken-2">
                 <div class="card-content white-text">
@@ -81,9 +81,9 @@
           <div class="input-field col s6">
             <select id="tipodoc_socio">
               <option value="" disabled selected>Tipo Documento</option>
-              <option value="1">Cédula</option>
-              <option value="2">Pasaporte</option>
-              <option value="3">Cedula de extrangería</option>
+              <option id = "d_1" value="1">Cédula</option>
+              <option id = "d_2" value="2">Pasaporte</option>
+              <option id = "d_3" value="3">Cedula de extrangería</option>
             </select>
           </div>
           <div class="input-field col s6">
@@ -96,8 +96,8 @@
           <div class="input-field col s6">
             <select id="sexo_socio">
               <option value="" disabled selected>Sexo</option>
-              <option value="1">Femenino</option>
-              <option value="2">Masculino</option>
+              <option id = "s_1" value="1">Femenino</option>
+              <option id = "s_2" value="2">Masculino</option>
             </select>
           </div>
           <div class="input-field col s6">
@@ -133,7 +133,7 @@
         </div>
 
         <div class="row">
-          <div class="input-field col s6">
+          <div id="fi" class="input-field col s6">
             <label for="fechaingreso_socio">Fecha de Ingreso</label>
             <br/>
             <input id="fechaingreso_socio" type="date" class="datepicker">
@@ -152,11 +152,11 @@
           </div>
         </div>
         <div id="row">
-          <div class="input-field col s4">
+          <div class="input-field col s4 passs">
             <label>Constraseña:</label>
             <input type="password" class="validate" id="contraseña_socio"/>
           </div>
-          <div class="input-field col s4">
+          <div class="input-field col s4 passs">
             <label>Confirmar Constraseña:</label>
             <input type="password" class="validate" id="contraseña_socio"/>
           </div>

@@ -16,18 +16,24 @@ $(document).ready(function () {
 	user = JSON.parse(sessionStorage.user);
 	$('#id_socio').val(user['K_ID_USUARIO'])
 	var sexo = user['O_SEXO'] == 1 ? 'F' : 'M';
-	$('#sexo_socio').val(sexo)
+	$('#sexo_socio').val('' + sexo);
+	$('#sexo_socio').material_select();
 	$('#apellido_socio').val(user['N_APELLIDO_USUARIO'])
-	$('#tipodoc_socio').val(getTipoDoc(null, user['O_TIPO_DOC']))
-	$('#estadocivil_socio').val(getEstadoCivil(null, user['O_ESTADO_CIVIL']))
+	$('#tipodoc_socio').val('' + getTipoDoc(null, user['O_TIPO_DOC']))
+	$('#tipodoc_socio').material_select();
+	$('#estadocivil_socio').val('' + getEstadoCivil(null, user['O_ESTADO_CIVIL']))
+	$('#estadocivil_socio').material_select();
 	$('#nombre_socio').val(user['N_USUARIO'])
 	$('#nick_socio').val(user['N_USERNAME'])
-	$('#numdoc_socio').val(user['O_TIPO_DOC'])
-	$('#nombre_socio').val(user['V_NUM_DOC'])
+	$('#documento_socio').val(user['V_NUM_DOC'])
 	$('#ocupacion_socio').val(user['N_OCUPACION'])
 	$('#email_socio').val(user['O_CORREO_ELECTRONICO'])
 	$('#ddomicilio_socio').val(user['O_DIRECCION'])
 	$('#tdomicilio_socio').val(user['V_TELEFONO'])
+	$('#tarjeta').hide();
+	$('#fi').hide();
+	$('.passs').hide();
+	//$('#guardar_socio').removeClass("disabled").addClass('waves-effect waves-light submit');
 	sessionStorage.removeItem('user');
 	}
 });
@@ -74,7 +80,6 @@ function getSexo(sexo){
 function validarTj(){
 	if(exist()){
 	  $('#message_validar').text('Tarjeta válida!');
-	  console.log('holii')
 	  $('#modal_validar').openModal();
 	  $('#guardar_socio').removeClass("disabled").addClass('waves-effect waves-light submit');
 	}else{

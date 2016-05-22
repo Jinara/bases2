@@ -30,4 +30,6 @@ GRANT select on fondo.parametro to socio;
 GRANT select on fondo.socio to socio;
 GRANT select on fondo.socio_administrador to socio;
 GRANT select on fondo.tipo_credito to socio;
+create public synonym usuario for k_id_usuario;
+grant select on usuario to socio;
 GRANT connect to socio;
