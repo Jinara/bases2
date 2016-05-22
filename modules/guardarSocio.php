@@ -20,6 +20,7 @@ try {
             //organiza el array de datos del nuevo Usuario
             $data_usuario[] = array('field' => 'K_ID_USUARIO', 'content' => '002477', 'type' => 'text');
             $data_usuario[] = array('field' => 'N_USUARIO', 'content' => $_POST['nombre'], 'type' => 'text');
+            $data_usuario[] = array('field' => 'N_USERNAME', 'content' => $_POST['nick'], 'type' => 'text');
             $data_usuario[] = array('field' => 'N_APELLIDO_USUARIO', 'content' => $_POST['apellido'], 'type' => 'text');
             $data_usuario[] = array('field' => 'O_TIPO_DOC', 'content' => $_POST['tipo_doc'], 'type' => 'text');
             $data_usuario[] = array('field' => 'V_NUM_DOC', 'content' => $_POST['documento'], 'type' => 'text');
@@ -30,7 +31,6 @@ try {
             $data_usuario[] = array('field' => 'V_TELEFONO', 'content' => $_POST['tdomicilio'], 'type' => 'text');
             $data_usuario[] = array('field' => 'O_DIRECCION', 'content' => $_POST['ddomicilio'], 'type' => 'text');
             $data_usuario[] = array('field' => 'O_CORREO_ELECTRONICO', 'content' => $_POST['email'], 'type' => 'text');
-            //$data_usuario[] = array('field' => 'O_PASSWORD', 'content' => $pass, 'type' => 'text');
 		
 	    //Creacion de usuario
             $usuario_tabla = $usuario_obj->create($data_usuario);
