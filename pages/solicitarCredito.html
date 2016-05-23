@@ -13,14 +13,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
+   >
+<body>
+   <ul id="dropdown1" class="dropdown-content">
+       <li><a id="crear_socio" href="crearSocio.html">Crear Socio</a></li>
+   </ul>
     <nav>
+
+      <ul id="dropdown2" class="dropdown-content">
+       <li><a id="crear_aporte" href="crearAporte.html">Crear Aporte</a></li>
+   </ul>
+    <nav>
+
+      <ul id="dropdown3" class="dropdown-content">
+       <li><a id="crear_credito" href="crearCredito.html">Crear Credito</a></li>
+   </ul>
+    <nav>
+
       <div class="nav-wrapper light-blue darken-2">
         <a class="brand-logo titulo">Sección Socios</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="">Aportes</a></li>
-          <li><a href="">Créditos</a></li>
+        <li><a class="dropdown-button" href="#!" data-activates="dropdown2">Aporte<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-button" href="#!" data-activates="dropdown3">Credito<i class="material-icons right">arrow_drop_down</i></a></li>
           <li><a href="">Parametrización</a></li>
-		  <li><a href="">Volver</a></li>
+    <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Socios<i class="material-icons right">arrow_drop_down</i></a></li>
+          <li><a id="logout" href="login.html">Salir</a></li>
         </ul>
      </div>
     </nav>
