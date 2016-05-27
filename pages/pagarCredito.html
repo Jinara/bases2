@@ -15,26 +15,22 @@
 <body>
    <ul id="dropdown1" class="dropdown-content">
        <li><a id="crear_socio" href="crearSocio.html">Crear Socio</a></li>
-   </ul>
-    <nav>
-
-      <ul id="dropdown2" class="dropdown-content">
-       <li><a id="crear_aporte" href="crearAporte.html">Crear Aporte</a></li>
-   </ul>
-    <nav>
-
-      <ul id="dropdown3" class="dropdown-content">
+       <li><a id="crear_socio" href="consultarEstado.html">Consultar Socio</a></li>
+   <ul id="dropdown3" class="dropdown-content">
+       <li><a id="agregar_aporte" href="agregarAporte.html">Agregar aporte</a></li>
        <li><a id="crear_credito" href="crearCredito.html">Crear Credito</a></li>
    </ul>
-    <nav>
+   <ul id="dropdown2" class="dropdown-content">
+       <li><a id="agregar_credito" href="solicitarCredito.html">Solicitar credito</a></li>
+   </ul>
 
       <div class="nav-wrapper light-blue darken-2">
         <a class="brand-logo titulo">Sección Socios</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a class="dropdown-button" href="#!" data-activates="dropdown2">Aporte<i class="material-icons right">arrow_drop_down</i></a></li>
-        <li><a class="dropdown-button" href="#!" data-activates="dropdown3">Credito<i class="material-icons right">arrow_drop_down</i></a></li>
-          <li><a href="">Parametrización</a></li>
-    <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Socios<i class="material-icons right">arrow_drop_down</i></a></li>
+          <li><a class="dropdown-button" href="#!" data-activates="dropdown3">Aportes<i class="material-icons right">arrow_drop_down</i></a></li>
+          <li><a class="dropdown-button" href="#!" data-activates="dropdown2">Créditos<i class="material-icons right">arrow_drop_down</i></a></li>
+          <li><a href="estParametros.html">Parametrización</a></li>
+          <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Socios<i class="material-icons right">arrow_drop_down</i></a></li>
           <li><a id="logout" href="login.html">Salir</a></li>
         </ul>
      </div>
@@ -47,7 +43,7 @@
       
     <div class="input-field col s6">
             <label>Numero de consignación</label>
-            <input type="text" class="validate" id="comp_pago"/>
+            <input type="text" class="validate" id="comp_pago">
           </div>
 
             <label>Fecha de Pago</label>
@@ -59,19 +55,19 @@
 
 		<div class="input-field col s4">
 		<label>Valor de la cuota</label>
-            <input type="text" class="text" id="valor_cuota"/>
+            <input type="text" class="text" id="valor_cuota">
           </div>
 
 
     <div class="input-field col s4">
     <label>Valor pagado a capital</label>
-            <input type="text" class="text" id="valor_capital"/>
+            <input type="text" class="text" id="valor_capital">
           </div>
 
 
     <div class="input-field col s4">
     <label>Valor pagado a interes</label>
-            <input type="text" class="text" id="valor_interes"/>
+            <input type="text" class="text" id="valor_interes">
           </div>
 
 
@@ -87,7 +83,7 @@
 
     <div class="input-field col s4">
     <label>Id del crédito</label>
-            <input type="text" class="text" id="id_credito"/>
+            <input type="text" class="text" id="id_credito">
           </div>		  
 		  
         <div class="input-field col s4 offset-s4">
@@ -97,6 +93,26 @@
           </div>
       </form>
     </div>
+
+      <!-- Modal Structure -->
+  <div id="modal_pago_credito" class="modal">
+    <div class="modal-content">
+      <h4>Mensaje:</h4>
+      <p id="message_pago_credito"></p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Aceptar</a>
+    </div>
+  </div>
+  <div id="modal_validar" class="modal">
+    <div class="modal-content">
+      <h4>Mensaje:</h4>
+      <p id="message_validar"></p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Aceptar</a>
+    </div>
+  </div>
   <script type="text/javascript" src="../js/lib/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="../js/lib/materialize.min.js"></script>
   <script type="text/javascript" src="../js/app.js"></script>

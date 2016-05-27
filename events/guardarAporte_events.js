@@ -18,7 +18,7 @@ function getTipoPago(tpago){
 }
 
 function saveAporte(){
-        console.log('haciendo servicio:');
+      //  console.log('haciendo servicio:');
 	console.log(getTipoPago($('#tipo_pago').val())),
                     $.ajax({
                         type: "POST",
@@ -32,16 +32,17 @@ function saveAporte(){
 				val_apor: $('#valor_pago').val(),
 				
 				type: 'pago_aporte'
-				}
+				},
+	          	success: function(data){good(data)}, 
+		  	error: function(data){bad(data)}
                     })
-                            .done(function (data) {
-                                if (data.respuesta) {
-                                    console.log('Pago aporte OK');
-                                } else {
-                                    console.log('Pago aporte FAILED');
-                                }
-                            })
-                            .fail(function () {
-                               console.log('fallo servicio'); 
-	})
+}
+function good(data){
+	$('#message_guardar_aporte').text('Aporte guardado con exito!');
+	$('#modal_guardar_aporte').openModal();
+		window.location = "../index.html";
+}
+function bad(data){
+	$('#message_guardar_aporte').text(data.responseText);
+	$('#modal_guardar_aporte').openModal();
 }

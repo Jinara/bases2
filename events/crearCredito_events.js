@@ -18,7 +18,7 @@ function getTipoCredito(tcred){
 }
 
 function saveCredito(){
-        console.log('haciendo servicio:');
+        //console.log('haciendo servicio:');
 	console.log(getTipoCredito($('#tipo_credito').val())),
                     $.ajax({
                         type: "POST",
@@ -33,16 +33,17 @@ function saveCredito(){
 				val_cred: $('#monto_credito').val(),
 				n_cuotas: $('#num_cuotas_credito').val(),
 				type: 'credito'
-				}
+				},
+	          	success: function(data){good(data)}, 
+		  	error: function(data){bad(data)}
                     })
-                            .done(function (data) {
-                                if (data.respuesta) {
-                                    console.log('Credito solicitado OK');
-                                } else {
-                                    console.log('Credito solicitado FAILED');
-                                }
-                            })
-                            .fail(function () {
-                               console.log('fallo servicio'); 
-	})
+}
+function good(data){
+	$('#message_crear_credito').text('Credito solicitado con exito!');
+	$('#modal_crear_credito').openModal();
+		window.location = "../index.html";
+}
+function bad(data){
+	$('#message_crear_credito').text(data.responseText);
+	$('#modal_crear_credito').openModal();
 }

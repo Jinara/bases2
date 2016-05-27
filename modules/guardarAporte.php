@@ -16,6 +16,10 @@ try {
     $pass = $_POST['password'];
     $socio_obj = NULL;
 
+    $usuario_logueado = $usuario_obj->findByField('n_username', $_SESSION['USERNAME'], 'text');
+    $id = $usuario_logueado['k_id_usuario'];
+
+
     $type = $_POST['type'];
     $fecha_solicitud = $_POST['fsolicitud'];
    
@@ -25,22 +29,22 @@ try {
             $data_aporte[] = array('field' => 'F_PAGO', 'content' => "to_date('$fpago','yyyy-mm-dd')", 'type' => 'date');
             $data_aporte[] = array('field' => 'V_MONTO_PAGO', 'content' => $_POST['val_apor'], 'type' => 'text');
             $data_aporte[] = array('field' => 'K_ID_TIPO_PAGO', 'content' => $_POST['tipo_pago'], 'type' => 'text');
-            $data_aporte[] = array('field' => 'K_ID_SOCIO', 'content' => $_SESSION['id'], 'type' => 'text');
+            $data_aporte[] = array('field' => 'K_ID_SOCIO', 'content' => $id, 'type' => 'text');
             
             
 
 	    //Creacion de aporte
             $aporte_tabla = $aporte_obj->create($data_aporte);
 	    //accedo al ultima solicitud de credito para obterner su id
-	    $last_credito = $credito_obj->getLast('K_ID_CREDITO');
-	    $last_socio_id = $last_credito['K_ID_SOCIO'];
+	    $last_aporte = $aporte_obj->getLast('K_ID_PAGO_APORTE');
+	    $last_socio_id = $last_aporte['K_ID_SOCIO'];
 	    $fondo_obj = Fondo::getInstance();
 	    $last_fondo = $fondo_obj->getLast('K_NIT_FONDO');
 	    $last_fondo_id = $last_fondo['K_NIT_FONDO'];
 
 
     	
-	    $usuario_nomb = NULL;
+/*	    $usuario_nomb = NULL;
 	    $socio_o_admin_tabla = NULL;
 	    if($usuario_tabla){
 	    	echo 'hola';
@@ -66,7 +70,9 @@ try {
   //  } else {
 
     //}
-} catch (Exception $e) {
+}*/ 
+
+catch (Exception $e) {
     $retorno['respuesta'] = false;
     $retorno['mensaje'] = 'Error al intentar crear credito.'.$e->getMessage();
 }

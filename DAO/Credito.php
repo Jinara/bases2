@@ -8,7 +8,7 @@ class Credito extends Entity {
     private static $instance = NULL;
 
     public function __construct() {
-        parent::__construct("credito");
+        parent::__construct("fondo.credito");
     }
 
     public static function getInstance() {

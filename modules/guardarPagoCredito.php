@@ -10,11 +10,15 @@ try {
     require_once '../DAO/Pago_Credito.php'
 
     $pcredito_obj = pago_credito::getInstance();
+    $credito_obj = Credito::getInstance();
     $data_pcredito = array(); //datos para tabla credito
    
     $name = $_POST['nombre'];
     $pass = $_POST['password'];
     $socio_obj = NULL;
+
+    $usuario_logueado = $usuario_obj->findByField('n_username', $_SESSION['USERNAME'], 'text');
+    $id = $usuario_logueado['k_id_usuario'];
 
     $type = $_POST['type'];
     $fecha_solicitud = $_POST['fsolicitud'];
@@ -23,12 +27,12 @@ try {
             $data_pcredito[] = array('field' => 'K_ID_PAGO_CREDITO', 'content' => '002111', 'type' => 'text');
             $data_pcredito[] = array('field' => 'O_NUM_CONSIGNACION', 'content' => $_POST['n_consig'], 'type' => 'text');
             $data_pcredito[] = array('field' => 'F_PAGO', 'content' => "to_date('$fpago','yyyy-mm-dd')", 'type' => 'date');
-            $data_pcredito[] = array('field' => 'V_MONTO_CUOTA', 'content' => $_POST['v_cuota}'], 'type' => 'text');
-            $data_pcredito[] = array('field' => 'V_MONTO_CAPITAL', 'content' => $_POST['v_cap}'], 'type' => 'text');
-            $data_pcredito[] = array('field' => 'V_MONTO_INTERES', 'content' => $_POST['v_int}'], 'type' => 'text');
+            $data_pcredito[] = array('field' => 'V_MONTO_CUOTA', 'content' => $_POST['v_cuota'], 'type' => 'text');
+            $data_pcredito[] = array('field' => 'V_MONTO_CAPITAL', 'content' => $_POST['v_cap'], 'type' => 'text');
+            $data_pcredito[] = array('field' => 'V_MONTO_INTERES', 'content' => $_POST['v_int'], 'type' => 'text');
             $data_pcredito[] = array('field' => 'K_ID_TIPO_PAGO', 'content' => $_POST['tpago'], 'type' => 'text');
 
-            $data_pcredito[] = array('field' => 'K_ID_SOCIO', 'content' => $_SESSION['id'], 'type' => 'text');
+            $data_pcredito[] = array('field' => 'K_ID_SOCIO', 'content' => $id, 'type' => 'text');
             $data_pcredito[] = array('field' => 'K_ID_CREDITO', 'content' => $_POST['id_cred'], 'type' => 'text');
             
 
@@ -42,7 +46,7 @@ try {
 	    $last_fondo_id = $last_fondo['K_NIT_FONDO'];
 
 
-    	
+/*    	
 	    $usuario_nomb = NULL;
 	    $socio_o_admin_tabla = NULL;
 	    if($usuario_tabla){
@@ -69,7 +73,9 @@ try {
   //  } else {
 
     //}
-} catch (Exception $e) {
+} */ 
+
+catch (Exception $e) {
     $retorno['respuesta'] = false;
     $retorno['mensaje'] = 'Error al intentar crear credito.'.$e->getMessage();
 }
