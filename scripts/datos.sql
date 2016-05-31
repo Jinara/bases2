@@ -83,11 +83,16 @@ INSERT INTO TIPO_MOVIMIENTO
 INSERT INTO TIPO_MOVIMIENTO
 	(k_id_tipo_mov,n_movimiento,o_des_mov)
 	VALUES
+	('1004','Consignacion cuota','Se paga la cuota de un credito');
+INSERT INTO TIPO_MOVIMIENTO
+	(k_id_tipo_mov,n_movimiento,o_des_mov)
+	VALUES
 	('2001','Retirar intereses','Se retiran los intereses pagados');
 INSERT INTO TIPO_MOVIMIENTO
 	(k_id_tipo_mov,n_movimiento,o_des_mov)
 	VALUES
-	('2002','Retirar tatal aportes','Se retiran todo de la cuenta');
+	('2002','Retirar total aportes','Se retiran todo de la cuenta');
+
 
 --SOCIO
 INSERT INTO SOCIO
@@ -326,9 +331,52 @@ GRANT socio TO Marcela;
 CREATE USER Rafael IDENTIFIED BY 123;
 GRANT socio TO Rafael;
 
-/*
+
 INSERT INTO MOVIMIENTO_CUENTA
-	(id_movimiento,v_monto_mov,f_movimiento,k_id_cuenta_fondo,k_id_tipo_mov)
+	(k_id_movimiento,v_monto_mov,f_movimiento,k_id_cuenta_fondo,k_id_tipo_mov)
 	VALUES
-	('');
-*/
+	('001',100000,'2016/03/22','001','1001');
+INSERT INTO MOVIMIENTO_CUENTA
+	(k_id_movimiento,v_monto_mov,f_movimiento,k_id_cuenta_fondo,k_id_tipo_mov)
+	VALUES
+	('002',100000,'2016/04/22','001','1001');
+INSERT INTO MOVIMIENTO_CUENTA
+	(k_id_movimiento,v_monto_mov,f_movimiento,k_id_cuenta_fondo,k_id_tipo_mov)
+	VALUES
+	('003',200000,'2016/03/22','001','1001');
+INSERT INTO MOVIMIENTO_CUENTA
+	(k_id_movimiento,v_monto_mov,f_movimiento,k_id_cuenta_fondo,k_id_tipo_mov)
+	VALUES
+	('004',200000,'2016/04/22','001','1001');
+INSERT INTO MOVIMIENTO_CUENTA
+	(k_id_movimiento,v_monto_mov,f_movimiento,k_id_cuenta_fondo,k_id_tipo_mov)
+	VALUES
+	('005',150000,'2016/03/22','001','1001');
+INSERT INTO MOVIMIENTO_CUENTA
+	(k_id_movimiento,v_monto_mov,f_movimiento,k_id_cuenta_fondo,k_id_tipo_mov)
+	VALUES
+	('006',150000,'2016/04/22','001','1001');
+INSERT INTO MOVIMIENTO_CUENTA
+	(k_id_movimiento,v_monto_mov,f_movimiento,k_id_cuenta_fondo,k_id_tipo_mov)
+	VALUES
+	('007',150000,'2016/03/22','001','1001');
+INSERT INTO MOVIMIENTO_CUENTA
+	(k_id_movimiento,v_monto_mov,f_movimiento,k_id_cuenta_fondo,k_id_tipo_mov)
+	VALUES
+	('008',150000,'2016/04/22','001','1001');
+INSERT INTO MOVIMIENTO_CUENTA
+	(k_id_movimiento,v_monto_mov,f_movimiento,k_id_cuenta_fondo,k_id_tipo_mov)
+	VALUES
+	('009',150000,'2016/04/22','001','1001');
+INSERT INTO MOVIMIENTO_CUENTA
+	(k_id_movimiento,v_monto_mov,f_movimiento,k_id_cuenta_fondo,k_id_tipo_mov)
+	VALUES
+	('010',256889,'2016/02/25','001','1004');
+INSERT INTO MOVIMIENTO_CUENTA
+	(k_id_movimiento,v_monto_mov,f_movimiento,k_id_cuenta_fondo,k_id_tipo_mov)
+	VALUES
+	('011',256889,'2016/03/10','001','1004');
+INSERT INTO MOVIMIENTO_CUENTA
+	(k_id_movimiento,v_monto_mov,f_movimiento,k_id_cuenta_fondo,k_id_tipo_mov)
+	VALUES
+	('012',256889,'2016/03/25','001','1004');

@@ -13,7 +13,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
- <nav> 
      <ul id="dropdown3" class="dropdown-content">
        <li><a id="agregar_aporte" href="agregarAporte.html">Agregar aporte</a></li>
      </ul>
@@ -28,7 +27,7 @@
          <li><a id="consultar_socio" href="consultarEstado.html">Consultar Socio</a></li>
      </ul>
      <ul id="dropdown4" class="dropdown-content">
-         <li><a id="consultar_fondo" href="pages/consultarFondo.html">Consultar Fondo</a></li>
+         <li><a id="consultar_fondo" href="consultarFondo.html">Consultar Fondo</a></li>
      </ul>
     <nav>
       <div class="nav-wrapper light-blue darken-2">
@@ -47,7 +46,17 @@
       <form class="col s8 offset-s2" id="consultar_basico">
         <h1>Consultar Balance</h1>
         <input type="number" style="display: none" length="15" id="id_cuenta"/>
-
+        <table>
+          <thead>
+            <tr>
+                <th data-field="id">Valor del Movimiento</th>
+                <th data-field="name">Fecha del Movimiento</th>
+                <th data-field="price">Tipo de Movimiento</th>
+            </tr>
+          </thead>
+          <tbody id="info_det">
+          </tbody>
+        </table>      
       </form>
     </div>
   <!-- Modal Structure -->

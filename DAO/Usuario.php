@@ -55,7 +55,9 @@ class Usuario extends Entity {
         $usuario['USERNAME'] = $user;
         $usuario['PASS'] = $pass;
         if($dbConn->is_connected() == 1){
-          $this->iniciarSesion($usuario);
+          if($this->iniciarSesion($usuario) == 'error'){
+	  	return 'error';
+	  }
           return true;
         }else{
           return $error != NULL ? $error : false;
@@ -74,11 +76,18 @@ class Usuario extends Entity {
         $_SESSION['USERNAME'] = isset($usuario['USERNAME']) ? $usuario['USERNAME'] : NULL;
         $_SESSION['PASS'] = isset($usuario['PASS']) ? $usuario['PASS'] : NULL;
         $conn = parent::getDBConnection($_SESSION['USERNAME'], $_SESSION['PASS']);
-        $_SESSION['ID'] = $this->getID($_SESSION['USERNAME']);
+        $_SESSION['ID'] = $this->getID($_SESSION['USERNAME'], $conn);
+	if($_SESSION['ID'] == 'error'){
+	   return 'error';
+	}
     }
 
-    private function getID($username){
-    	$user = $this->findByField('N_USERNAME', "'".$username."'", 'text');
+    private function getID($username, $conn){
+    	$query = "select * from usuario_id_syn where n_username like '" . $username . "'";
+    	$user = parent::getData($conn, $query);
+	if(!array_key_exists(0,$user)){
+	   return 'error';
+	}
 	return $user[0]['K_ID_USUARIO']; 
     }
 }

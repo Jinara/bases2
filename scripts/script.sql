@@ -69,13 +69,13 @@ ALTER TABLE Mov_cuenta_aporte ADD CONSTRAINT Mov_cuenta_aporte_PK PRIMARY KEY ( 
 
 CREATE TABLE Movimiento_cuenta
   (
-    id_movimiento     VARCHAR2 (4 CHAR) NOT NULL ,
+    k_id_movimiento     VARCHAR2 (4 CHAR) NOT NULL ,
     v_monto_mov       NUMBER (9) NOT NULL ,
     f_movimiento      DATE NOT NULL ,
     k_id_cuenta_fondo VARCHAR2 (3 CHAR) NOT NULL ,
     k_id_tipo_mov     VARCHAR2 (4 CHAR) NOT NULL
   ) ;
-ALTER TABLE Movimiento_cuenta ADD CONSTRAINT Movimiento_cuenta_PK PRIMARY KEY ( id_movimiento ) ;
+ALTER TABLE Movimiento_cuenta ADD CONSTRAINT Movimiento_cuenta_PK PRIMARY KEY ( k_id_movimiento ) ;
 
 
 CREATE TABLE Pago_aporte
@@ -294,6 +294,8 @@ CREATE SEQUENCE k_nit_fondo_seq START WITH 000001 INCREMENT BY 1 MINVALUE 000001
 CREATE SEQUENCE k_tipo_credito_seq START WITH 01 INCREMENT BY 1 MINVALUE 01 NOCYCLE;
 
 CREATE SEQUENCE k_id_parametro_seq START WITH 001 INCREMENT BY 1 MINVALUE 001 NOCYCLE;
+
+CREATE SEQUENCE k_id_movimiento START WITH 001 INCREMENT BY 1 MINVALUE 001 NOCYCLE;
 
 -- Informe de Resumen de Oracle SQL Developer Data Modeler: 
 -- 

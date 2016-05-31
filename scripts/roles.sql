@@ -1,35 +1,35 @@
-CREATE ROLE socio_admin;
+CREATE ROLE administrador;
 
-CREATE ROLE socio;
+CREATE ROLE usuario;
 
-GRANT select,update,insert on fondo.credito to socio_admin;
-GRANT select,update,insert on fondo.cuenta_fondo to socio_admin;
-GRANT select,update,insert on fondo.cuenta_aporte to socio_admin;
-GRANT select,update,insert on fondo.mov_cuenta_aporte to socio_admin;
-GRANT select,update,insert on fondo.movimiento_cuenta to socio_admin;
-GRANT select,update,insert on fondo.pago_aporte to socio_admin;
-GRANT select,update,insert on fondo.pago_credito to socio_admin;
-GRANT select,update,insert on fondo.parametro to socio_admin;
-GRANT select,update,insert on fondo.socio to socio_admin;
-GRANT select,update,insert on fondo.socio_administrador to socio_admin;
-GRANT select,update,insert on fondo.tipo_credito to socio_admin;
-GRANT select,update,insert on fondo.tipo_pago to socio_admin;
-GRANT select,update,insert on fondo.tipo_movimiento to socio_admin;
-GRANT select,update,insert on fondo.usuario to socio_admin;
-GRANT connect,resource to socio_admin;
+GRANT select,update,insert on fondo.credito to administrador;
+GRANT select,update,insert on fondo.cuenta_fondo to administrador;
+GRANT select,update,insert on fondo.cuenta_aporte to administrador;
+GRANT select,update,insert on fondo.mov_cuenta_aporte to administrador;
+GRANT select,update,insert on fondo.movimiento_cuenta to administrador;
+GRANT select,update,insert on fondo.pago_aporte to administrador;
+GRANT select,update,insert on fondo.pago_credito to administrador;
+GRANT select,update,insert on fondo.parametro to administrador;
+GRANT select,update,insert on fondo.socio to administrador;
+GRANT select,update,insert on fondo.socio_administrador to administrador;
+GRANT select,update,insert on fondo.tipo_credito to administrador;
+GRANT select,update,insert on fondo.tipo_pago to administrador;
+GRANT select,update,insert on fondo.tipo_movimiento to administrador;
+GRANT select,update,insert on fondo.usuario to administrador;
+GRANT connect,resource to administrador;
 
 CREATE USER socio_administrador identified by socioAdmin;
 
-GRANT socio_admin to socio_administrador;
+GRANT administrador to socio_administrador;
 
-GRANT select on fondo.credito to socio;
-GRANT select on fondo.mov_cuenta_aporte to socio;
-GRANT select on fondo.pago_aporte to socio;
-GRANT select on fondo.pago_credito to socio;
-GRANT select on fondo.parametro to socio;
-GRANT select on fondo.socio to socio;
-GRANT select on fondo.socio_administrador to socio;
-GRANT select on fondo.tipo_credito to socio;
+GRANT select on fondo.credito to usuario;
+GRANT select on fondo.mov_cuenta_aporte to usuario;
+GRANT select on fondo.pago_aporte to usuario;
+GRANT select on fondo.pago_credito to usuario;
+GRANT select on fondo.parametro to usuario;
+GRANT select on fondo.socio to usuario;
+GRANT select on fondo.socio_administrador to usuario;
+GRANT select on fondo.tipo_credito to usuario;
 CREATE VIEW usuario_id as select k_id_usuario from usuario;
-GRANT select on usuario_id to socio;
-GRANT connect to socio;
+GRANT select on usuario_id to usuario;
+GRANT connect to usuario;

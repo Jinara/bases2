@@ -1,5 +1,5 @@
 App.consultarFondoDetalladoEvents = (function(app){
-	$('#detallado').on('click', function(){
+    $(document).ready(function(){
       		$.ajax({
                   type: "POST",
                   url: "../modules/consultarFondoDetallado.php",
@@ -10,11 +10,26 @@ App.consultarFondoDetalladoEvents = (function(app){
               })
 	});
 	function good(data){
-	console.log(data);
-		 var cuenta = data.user[0];
+		var cuenta = data.user;
+		renderFondoDetallado(cuenta);	
 	}	
 	function bad(data, err){
-		$('#message_fondo').text('error: ' + data.responseText);
-		$('#modal_fondo').openModal();
+		$('#message_detallado').text('error: ' + data.responseText);
+		$('#modal_detallado').openModal();
+	}
+	function renderFondoDetallado(cuenta){
+		console.log(cuenta);
+    		var table = '';
+		for(key in cuenta){
+		  if(key != 'error'){
+		    table = table + '<tr>';
+		    for(var i = 0; i < 3; i++){
+		      table = table + '<td>' + cuenta[key][i] + '</td>';
+		    }
+		    table = table + '</tr>';
+		  }
+		}
+		console.log(table);
+		$('#info_det').append(table);
 	}
 })(App)

@@ -7,6 +7,10 @@ try{
   $usuario = Usuario::getInstance();
   
   $retorno['respuesta'] = $usuario->loginDB($username,$pass);
+  if ($retorno['respuesta'] == 'error'){
+    $retorno['respuesta'] = 'Usuario no existente';
+    $retorno['mensaje'] = 'Usuario no existente';
+  }
   if ($retorno['respuesta']){
     $retorno['respuesta'] = true;
     $retorno['mensaje'] = "Usuario logueado";
