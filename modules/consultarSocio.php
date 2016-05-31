@@ -7,7 +7,7 @@ try {
     $cond = $_POST['documento'];
     $user = $usuario_obj->findByField('V_NUM_DOC', $cond, 'text'); 
     if(!array_key_exists(0,$user)){
-      $retorno['respuesta'] = true;
+      $retorno['respuesta'] = $user;
       $retorno['mensaje'] = "El Usuario no existe";
     }else{
       $retorno['user'] = $user;
@@ -17,7 +17,5 @@ try {
     $retorno['respuesta'] = false;
     $retorno['mensaje'] = 'Error al consultar crear o editar Usuario.'.$e->getMessage();
 }
-
-
 echo json_encode($retorno);
 ?>

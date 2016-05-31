@@ -277,7 +277,7 @@ class Entity extends Database {
                 $query .= '='.$value;
                 break;
         }
-        
+        echo $query;
 	$conn = parent::getDBConnection($_SESSION['USERNAME'], $_SESSION['PASS']);
         return parent::getData($conn, $query);
     }

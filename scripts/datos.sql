@@ -286,17 +286,17 @@ INSERT INTO PAGO_CREDITO
 	(k_id_pago_credito,o_num_consignacion,f_pago,v_monto_cuota,v_monto_capital,
 	v_monto_interes,k_id_tipo_pago,k_id_credito)
 	VALUES
-	('001','52631579512','2016/02/25',256889,222223,346666,'01','10');
+	('001','52631579512','2016/02/25',256889,222223,346666,'01','1');
 INSERT INTO PAGO_CREDITO
 	(k_id_pago_credito,o_num_consignacion,f_pago,v_monto_cuota,v_monto_capital,
 	v_monto_interes,k_id_tipo_pago,k_id_credito)
 	VALUES
-	('001','51364978415','2016/03/10',256889,222223,346666,'01','11');
+	('001','51364978415','2016/03/10',256889,222223,346666,'01','2');
 INSERT INTO PAGO_CREDITO
 	(k_id_pago_credito,o_num_consignacion,f_pago,v_monto_cuota,v_monto_capital,
 	v_monto_interes,k_id_tipo_pago,k_id_credito)
 	VALUES
-	('002','52631579597','2016/03/25',256889,222223,346666,'01','10');
+	('002','52631579597','2016/03/25',256889,222223,346666,'01','1');
 	
 	
 --FONDO SEGUNDA ENTREGA
@@ -305,6 +305,26 @@ INSERT INTO CUENTA_FONDO
 	v_saldo_gastos,v_saldo_int_banco,f_inicio_periodo,f_fin_periodo,k_nit_fondo)
 	VALUES
 	('001',880000000,320000000,162000000,40000000,150000,'2015/01/01','2015/12/31','159845618');
+
+
+CREATE USER Camilo IDENTIFIED BY 123;
+GRANT socio TO Camilo;
+CREATE USER Daniela IDENTIFIED BY 123;
+GRANT socio TO Daniela;
+CREATE USER Eliana IDENTIFIED BY 123;
+GRANT socio TO Eliana;
+CREATE USER Estefania IDENTIFIED BY 123;
+GRANT socio_admin TO Estefania;
+CREATE USER Guillermo IDENTIFIED BY 123;
+GRANT socio_admin TO Guillermo;
+CREATE USER Jeronimo IDENTIFIED BY 123;
+GRANT socio TO Jeronimo;
+CREATE USER Jose IDENTIFIED BY 123;
+GRANT socio TO Jose;
+CREATE USER Marcela IDENTIFIED BY 123;
+GRANT socio TO Marcela;
+CREATE USER Rafael IDENTIFIED BY 123;
+GRANT socio TO Rafael;
 
 /*
 INSERT INTO MOVIMIENTO_CUENTA

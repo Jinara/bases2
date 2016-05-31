@@ -12,13 +12,16 @@ var user = null;
               })
 	});
 	function good(data){
-	console.log(data);
-	//	$('#message_consultar_socio').text(data.mensaje);
-	//	$('#modal_consultar_socio').openModal();
-
-		user = data.user[0];
-		renderSocio(user, function(){
-		});
+		console.log(data);
+		
+		if ("user" in data) {
+			user = data.user[0];
+			renderSocio(user, function(){
+			});
+		}else{
+			$('#message_consultar_socio').text(data.mensaje);
+			$('#modal_consultar_socio').openModal();
+		}
 	}	
 	function bad(data, err){
 		$('#message_consultar_socio').text('error: ' + data.responseText);

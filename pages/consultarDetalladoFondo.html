@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Consultar Balance del Fondo</title>
+  <meta charset="utf-8">
+  <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+ <nav> 
+     <ul id="dropdown3" class="dropdown-content">
+       <li><a id="agregar_aporte" href="agregarAporte.html">Agregar aporte</a></li>
+     </ul>
+
+     <ul id="dropdown2" class="dropdown-content">
+         <li><a id="solicitar_credito" href="solicitarCredito.html">Solicitar crédito</a></li>
+         <li><a id="pagar_credito" href="pagarCredito.html">Pagar crédito</a></li>
+     </ul>
+
+     <ul id="dropdown1" class="dropdown-content">
+         <li><a id="crear_socio" href="crearSocio.html">Crear Socio</a></li>
+         <li><a id="consultar_socio" href="consultarEstado.html">Consultar Socio</a></li>
+     </ul>
+     <ul id="dropdown4" class="dropdown-content">
+         <li><a id="consultar_fondo" href="pages/consultarFondo.html">Consultar Fondo</a></li>
+     </ul>
+    <nav>
+      <div class="nav-wrapper light-blue darken-2">
+        <a class="brand-logo titulo" href="../index.html">Sección Fondo</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a class="dropdown-button" href="#!" data-activates="dropdown4">Fondo<i class="material-icons right">arrow_drop_down</i></a></li>
+      		<li><a class="dropdown-button" href="#!" data-activates="dropdown3">Aportes<i class="material-icons right">arrow_drop_down</i></a></li>
+      		<li><a class="dropdown-button" href="#!" data-activates="dropdown2">Créditos<i class="material-icons right">arrow_drop_down</i></a></li>
+      		<li><a href="estParametros.html">Parametrización</a></li>
+	  	    <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Socios<i class="material-icons right">arrow_drop_down</i></a></li>
+          <li><a href="login.html" id="logout">Salir</a></li>
+        </ul>
+     </div>
+    </nav>
+    <div class="row">
+      <form class="col s8 offset-s2" id="consultar_basico">
+        <h1>Consultar Balance</h1>
+        <input type="number" style="display: none" length="15" id="id_cuenta"/>
+
+      </form>
+    </div>
+  <!-- Modal Structure -->
+  <div id="modal_detallado" class="modal">
+    <div class="modal-content">
+      <h4>Mensaje:</h4>
+      <p id="message_detallado"></p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Aceptar</a>
+    </div>
+  </div>
+  <script type="text/javascript" src="../js/lib/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="../js/lib/materialize.min.js"></script>
+  <script type="text/javascript" src="../js/livevalidation.js"></script>
+  <script type="text/javascript" src="../js/app.js"></script>
+  <script type="text/javascript" src="../js/events.js"></script>
+  <script type="text/javascript" src="../js/main.js"></script>
+  <script type="text/javascript" src="../events/consultarFondoDetallado.js"></script>
+</body>
+</html>

@@ -13,28 +13,28 @@ $(document).ready(function () {
 	$('#tipodoc_socio').material_select();
 
 	if(sessionStorage.user){
-	user = JSON.parse(sessionStorage.user);
-	$('#id_socio').val(user['K_ID_USUARIO'])
-	var sexo = user['O_SEXO'] == 1 ? 'F' : 'M';
-	$('#sexo_socio').val('' + sexo);
-	$('#sexo_socio').material_select();
-	$('#apellido_socio').val(user['N_APELLIDO_USUARIO'])
-	$('#tipodoc_socio').val('' + getTipoDoc(null, user['O_TIPO_DOC']))
-	$('#tipodoc_socio').material_select();
-	$('#estadocivil_socio').val('' + getEstadoCivil(null, user['O_ESTADO_CIVIL']))
-	$('#estadocivil_socio').material_select();
-	$('#nombre_socio').val(user['N_USUARIO'])
-	$('#nick_socio').val(user['N_USERNAME'])
-	$('#documento_socio').val(user['V_NUM_DOC'])
-	$('#ocupacion_socio').val(user['N_OCUPACION'])
-	$('#email_socio').val(user['O_CORREO_ELECTRONICO'])
-	$('#ddomicilio_socio').val(user['O_DIRECCION'])
-	$('#tdomicilio_socio').val(user['V_TELEFONO'])
-	$('#tarjeta').hide();
-	$('#fi').hide();
-	$('.passs').hide();
-	//$('#guardar_socio').removeClass("disabled").addClass('waves-effect waves-light submit');
-	sessionStorage.removeItem('user');
+		user = JSON.parse(sessionStorage.user);
+		$('#id_socio').val(user['K_ID_USUARIO'])
+		var sexo = user['O_SEXO'] == 1 ? 'F' : 'M';
+		$('#sexo_socio').val('' + sexo);
+		$('#sexo_socio').material_select();
+		$('#apellido_socio').val(user['N_APELLIDO_USUARIO'])
+		$('#tipodoc_socio').val('' + getTipoDoc(null, user['O_TIPO_DOC']))
+		$('#tipodoc_socio').material_select();
+		$('#estadocivil_socio').val('' + getEstadoCivil(null, user['O_ESTADO_CIVIL']))
+		$('#estadocivil_socio').material_select();
+		$('#nombre_socio').val(user['N_USUARIO'])
+		$('#nick_socio').val(user['N_USERNAME'])
+		$('#documento_socio').val(user['V_NUM_DOC'])
+		$('#ocupacion_socio').val(user['N_OCUPACION'])
+		$('#email_socio').val(user['O_CORREO_ELECTRONICO'])
+		$('#ddomicilio_socio').val(user['O_DIRECCION'])
+		$('#tdomicilio_socio').val(user['V_TELEFONO'])
+		$('#tarjeta').hide();
+		$('#fi').hide();
+		$('.passs').hide();
+		//$('#guardar_socio').removeClass("disabled").addClass('waves-effect waves-light submit');
+		sessionStorage.removeItem('user');
 	}
 });
 
@@ -93,36 +93,36 @@ return true;
 	return (Math.floor((Math.random() * 10) + 1)) == 1 ? true : false;
 }
 function saveSocio(){
-                    $.ajax({
-                        type: "POST",
-                        url: "../modules/guardarSocio.php",
-                        dataType: "json",
-                        timeout: 5000,
-                        data: {
-				id: $('#id_socio').val(),
-				nombre: $('#nombre_socio').val(),
-				apellido: $('#apellido_socio').val(),
-				nick: $('#nick_socio').val(),
-				estado_civil: getEstadoCivil($('#estadocivil_socio').val()),
-				tipo_doc: getTipoDoc($('#tipodoc_socio').val()),
-				ocupacion: $('#ocupacion_socio').val(),
-				documento: $('#nick_socio').val(),
-				sexo: getSexo($('#sexo_socio').val()),
-				email: $('#email_socio').val(),
-				dtrabajo: $('#dtrabajo_socio').val(),
-				ddomicilio: $('#ddomicilio_socio').val(),
-				ttrabajo: $('#ttrabajo_socio').val(),
-				celular: $('#celular_socio').val(),
-				tdomicilio: $('#tdomicilio_socio').val(),
-				fingreso: parse_date($('#fechaingreso_socio').val()),
-				fsalida: $('#fechasalida_socio').val(),
-				causal: $('#causal_socio').val(),
-				password: $('#contraseña_socio').val(),
-				type: 'socio'
-  			},
-	          	success: function(data){good(data)}, 
-		  	error: function(data){bad(data)}
-                    })
+    $.ajax({
+        type: "POST",
+        url: "../modules/guardarSocio.php",
+        dataType: "json",
+        timeout: 5000,
+        data: {
+			id: $('#id_socio').val(),
+			nombre: $('#nombre_socio').val(),
+			apellido: $('#apellido_socio').val(),
+			nick: $('#nick_socio').val(),
+			estado_civil: getEstadoCivil($('#estadocivil_socio').val()),
+			tipo_doc: getTipoDoc($('#tipodoc_socio').val()),
+			ocupacion: $('#ocupacion_socio').val(),
+			documento: $('#nick_socio').val(),
+			sexo: getSexo($('#sexo_socio').val()),
+			email: $('#email_socio').val(),
+			dtrabajo: $('#dtrabajo_socio').val(),
+			ddomicilio: $('#ddomicilio_socio').val(),
+			ttrabajo: $('#ttrabajo_socio').val(),
+			celular: $('#celular_socio').val(),
+			tdomicilio: $('#tdomicilio_socio').val(),
+			fingreso: parse_date($('#fechaingreso_socio').val()),
+			fsalida: $('#fechasalida_socio').val(),
+			causal: $('#causal_socio').val(),
+			password: $('#contraseña_socio').val(),
+			type: 'socio'
+		},
+	  	success: function(data){good(data)}, 
+		error: function(data){bad(data)}
+    })
 }
 function good(data){
 	$('#message_crear_socio').text('Socio creado con exito!');
