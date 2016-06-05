@@ -30,9 +30,9 @@ class Usuario extends Entity {
         	$dbConn = parent::getDBConnection($_SESSION['USERNAME'], $_SESSION['PASS']);
         	self::exec_query($dbConn, $query);
     		if($type == "socio"){
-			$query = 'grant socio to ' . $name;
+			$query = 'grant usuario to ' . $name;
 		}else{
-			$query = 'grant socio_admin to ' . $name;
+			$query = 'grant administrador to ' . $name;
 		}
         	return self::exec_query($dbConn, $query);
 	}catch(Exception $e){
