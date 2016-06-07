@@ -15,7 +15,7 @@ $(document).ready(function () {
 	if(sessionStorage.user){
 		user = JSON.parse(sessionStorage.user);
 		$('#id_socio').val(user['K_ID_USUARIO'])
-		var sexo = user['O_SEXO'] == 1 ? 'F' : 'M';
+		var sexo = user['O_SEXO'] == 'F' ? 1 : 2;
 		$('#sexo_socio').val('' + sexo);
 		$('#sexo_socio').material_select();
 		$('#apellido_socio').val(user['N_APELLIDO_USUARIO'])
@@ -30,10 +30,12 @@ $(document).ready(function () {
 		$('#email_socio').val(user['O_CORREO_ELECTRONICO'])
 		$('#ddomicilio_socio').val(user['O_DIRECCION'])
 		$('#tdomicilio_socio').val(user['V_TELEFONO'])
+		$('#causal_socio').val(user['N_CAUSAL'])
 		$('#tarjeta').hide();
-		$('#fi').hide();
+		$('#fechaingreso_socio').val(user['F_INICIO']);
+		$('#fechasalida_socio').val(user['F_FIN']);
 		$('.passs').hide();
-		//$('#guardar_socio').removeClass("disabled").addClass('waves-effect waves-light submit');
+		$('#guardar_socio').removeClass("disabled").addClass('waves-effect waves-light submit');
 		sessionStorage.removeItem('user');
 	}
 });
@@ -115,9 +117,10 @@ function saveSocio(){
 			celular: $('#celular_socio').val(),
 			tdomicilio: $('#tdomicilio_socio').val(),
 			fingreso: parse_date($('#fechaingreso_socio').val()),
-			fsalida: $('#fechasalida_socio').val(),
+			fsalida: parse_date($('#fechasalida_socio').val()),
 			causal: $('#causal_socio').val(),
 			password: $('#contraseña_socio').val(),
+			tarjeta: $('#tj_socio').val(),
 			type: 'socio'
 		},
 	  	success: function(data){good(data)}, 
@@ -130,11 +133,11 @@ function good(data){
 		window.location = "../index.html";
 }
 function bad(data){
-	$('#message_crear_socio').text('Error al crear socio, por favor vuelva a intentarlo');
+	$('#message_crear_socio').text(data.responseText);
 	$('#modal_crear_socio').openModal();
 }
 function renderSocio(user){
-	window.location = "../pages/crearSocio.html";
+        window.location = "../pages/crearSocio.html";
 	sessionStorage.user = JSON.stringify(user);
 }
 return {

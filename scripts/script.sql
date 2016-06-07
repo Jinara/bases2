@@ -119,8 +119,8 @@ ALTER TABLE Parametro ADD CONSTRAINT Parametro_PK PRIMARY KEY ( k_id_parametro )
 CREATE TABLE Socio
   (
     o_estado_socio VARCHAR2 (1 CHAR) NOT NULL ,
-	f_inicio	   DATE NOT NULL,
-	f_fin		   DATE,
+	  f_inicio	     DATE NOT NULL,
+	  f_fin		       DATE,
     k_nit_fondo    VARCHAR2 (9 CHAR) NOT NULL ,
     k_id_socio     VARCHAR2 (6 CHAR) NOT NULL
   ) ;
@@ -179,7 +179,8 @@ CREATE TABLE Usuario
     o_sexo                VARCHAR2 (1 CHAR) NOT NULL ,
     v_telefono            VARCHAR2 (10 CHAR) NOT NULL ,
     o_direccion           VARCHAR2 (40 CHAR) NOT NULL ,
-    o_correo_electronico  VARCHAR2 (40 CHAR) NOT NULL
+    o_correo_electronico  VARCHAR2 (40 CHAR) NOT NULL ,
+    n_causal              VARCHAR2 (50 CHAR)
   ) ;
 
 ALTER TABLE Usuario ADD CONSTRAINT Usuario_PK PRIMARY KEY ( k_id_usuario ) ;

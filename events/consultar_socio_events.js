@@ -12,7 +12,6 @@ var user = null;
               })
 	});
 	function good(data){
-		console.log(data);
 		
 		if ("user" in data) {
 			user = data.user[0];

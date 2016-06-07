@@ -91,6 +91,9 @@ class Entity extends Database {
                 case 'text':
                     $query.= "'" . $d['content'] . "',";
                     break;
+                case 'date':
+                    $query.= "" . $d['content'] . ",";
+                    break;
                 default:
                     $query.= "'" . $d['content'] . "',";
                     break;

@@ -313,23 +313,23 @@ INSERT INTO CUENTA_FONDO
 
 
 CREATE USER Camilo IDENTIFIED BY 123;
-GRANT socio TO Camilo;
+GRANT usuario TO Camilo;
 CREATE USER Daniela IDENTIFIED BY 123;
-GRANT socio TO Daniela;
+GRANT usuario TO Daniela;
 CREATE USER Eliana IDENTIFIED BY 123;
-GRANT socio TO Eliana;
+GRANT usuario TO Eliana;
 CREATE USER Estefania IDENTIFIED BY 123;
-GRANT socio_admin TO Estefania;
+GRANT administrador TO Estefania;
 CREATE USER Guillermo IDENTIFIED BY 123;
-GRANT socio_admin TO Guillermo;
+GRANT administrador TO Guillermo;
 CREATE USER Jeronimo IDENTIFIED BY 123;
-GRANT socio TO Jeronimo;
+GRANT usuario TO Jeronimo;
 CREATE USER Jose IDENTIFIED BY 123;
-GRANT socio TO Jose;
+GRANT usuario TO Jose;
 CREATE USER Marcela IDENTIFIED BY 123;
-GRANT socio TO Marcela;
+GRANT usuario TO Marcela;
 CREATE USER Rafael IDENTIFIED BY 123;
-GRANT socio TO Rafael;
+GRANT usuario TO Rafael;
 
 
 INSERT INTO MOVIMIENTO_CUENTA
