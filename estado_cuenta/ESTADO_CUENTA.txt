@@ -1,0 +1,4 @@
+El estado de cuenta del socio es el siguiente:Nombre: Jeronimo
+Total Aportes: 200000
+Total Credito: 7777777
+Total Rendimientos: 0
